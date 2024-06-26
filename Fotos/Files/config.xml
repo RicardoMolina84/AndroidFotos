@@ -1,0 +1,37 @@
+
+<fotos>
+
+ </login>
+   <usuario>rmolina</usuario>
+   <contraseña>1234</contraseña>
+   <recordar>1</recordar>
+ </login>
+
+ </ruta_origen>
+   <fotoscamara>/DCIM/Camera</fotoscamara>
+   <videoscamara>/DCIM/Camera</videoscamara>
+   <imageneswhatsapp>/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images</imageneswhatsapp>
+   <videoswhatsapp>Tomate</videoswhatsapp>
+ </ruta_origen>
+
+ </ruta_destino>
+   <UsuarioRutaFotos>RiBackup</UsuarioRutaFotos>
+ </ruta_destino>
+
+ </ftp>
+   <servidorruta>./H/DiscoCompartido/</servidorruta>
+   <servidorip>192.168.1.112</servidorip>
+   <servidorpuerto>21</servidorpuerto>
+   <servidorusuario>admin</servidorusuario>
+   <servidorclave>31119914</servidorclave>
+ </ftp>
+
+</fotos>
+
+
+***
+
+rmolina
+1234
+
+

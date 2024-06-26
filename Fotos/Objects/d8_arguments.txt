@@ -1,0 +1,97 @@
+--release
+--output
+C:\Proyectos Android\Fotos\Fotos\Objects
+--lib
+C:\Android\platforms\android-30\android.jar
+C:\Android\tools\..\extras\b4a_local\unpacked-b4ashared-63822340562000\dex_v1\b4ashared.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-b4xencryption-63822340562000\dex_v1\b4xencryption.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-core-63822340562000\dex_v1\core.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-gps-63822340562000\dex_v1\gps.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-javaobject-63822340562000\dex_v1\javaobject.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-net-63707030002000\dex_v1\net.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-phone-63822340562000\dex_v1\phone.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-reflection-63822340562000\dex_v1\reflection.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-simplexml2-63755835189608\dex_v1\simplexml2.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-stringutils-63822340564000\dex_v1\stringutils.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-xui-63822340564000\dex_v1\xui.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-xmlbuilder-63822340564000\dex_v1\xmlbuilder.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-xmlsax-63822340564000\dex_v1\xmlsax.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-remotelogger-63822340562000\dex_v1\remotelogger.zip
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\backup$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\backup$B4AMenuItemsClickListener.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\backup$HandleKeyDelayed.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\backup$ResumeMessage.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\backup$WaitForLayout.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\backup.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\configuracion$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\configuracion$B4AMenuItemsClickListener.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\configuracion$HandleKeyDelayed.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\configuracion$ResumeMessage.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\configuracion$WaitForLayout.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\configuracion.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\datosglobales.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\fxglobales.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\login$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\login$B4AMenuItemsClickListener.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\login$HandleKeyDelayed.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\login$ResumeMessage.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\login$WaitForLayout.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\login.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\main$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\main$B4AMenuItemsClickListener.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\main$HandleKeyDelayed.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\main$ResumeMessage.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\main$WaitForLayout.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\main.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\map2xml.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal$B4AMenuItemsClickListener.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal$HandleKeyDelayed.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal$ResumableSub_EncontroArchivoEnServidor.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal$ResumableSub_ObtenerListaCarpetasBase.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal$ResumableSub_ObtenerListaDeArchivos.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal$ResumeMessage.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal$WaitForLayout.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\principal.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\R$drawable.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\R$style.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\R.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup$2.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup$servbackup_BR.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup2$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup2$2.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup2$ResumableSub_Service_Start.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup2$ResumableSub_ValidarCnxServidor.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup2$servbackup2_BR.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup2.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup3$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup3$2.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup3$ResumableSub_Service_Start.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup3$ResumableSub_ValidarCnxServidor.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup3$servbackup3_BR.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup3.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$2.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$ResumableSub_ConsultarCantidadTotalDeArchivos.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$ResumableSub_EncontroArchivoEnServidor.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$ResumableSub_GuardarArchivoEnElServidor.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$ResumableSub_IniciarProceso.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$ResumableSub_Service_Start.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$ResumableSub_ValidarCnxServidor.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$servbackup4_BR.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4$_tipooperacion.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\servbackup4.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\starter$1.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\starter$2.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\starter$starter_BR.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\starter.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\xml2map$_xmlelement.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\xml2map.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\designerscripts\LS_backup.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\designerscripts\LS_configuracion.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\designerscripts\LS_configuracioncontenido.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\designerscripts\LS_login.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\designerscripts\LS_main.dex
+C:\Proyectos Android\Fotos\Fotos\Objects\dexed\b4a\example\designerscripts\LS_principal.dex
