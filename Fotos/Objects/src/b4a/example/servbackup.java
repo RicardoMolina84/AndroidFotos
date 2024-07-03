@@ -14,7 +14,7 @@ public class servbackup extends android.app.Service{
 			android.content.Intent in = new android.content.Intent(context, servbackup.class);
 			if (intent != null)
 				in.putExtra("b4a_internal_intent", intent);
-            ServiceHelper.StarterHelper.startServiceFromReceiver (context, in, false, BA.class);
+            ServiceHelper.StarterHelper.startServiceFromReceiver (context, in, false, anywheresoftware.b4a.ShellBA.class);
 		}
 
 	}
@@ -29,7 +29,7 @@ public class servbackup extends android.app.Service{
         super.onCreate();
         mostCurrent = this;
         if (processBA == null) {
-		    processBA = new BA(this, null, null, "b4a.example", "b4a.example.servbackup");
+		    processBA = new anywheresoftware.b4a.ShellBA(this, null, null, "b4a.example", "b4a.example.servbackup");
             if (BA.isShellModeRuntimeCheck(processBA)) {
                 processBA.raiseEvent2(null, true, "SHELL", false);
 		    }
@@ -57,7 +57,10 @@ public class servbackup extends android.app.Service{
         }
         processBA.runHook("oncreate", this, null);
         if (false) {
-			ServiceHelper.StarterHelper.runWaitForLayouts();
+			if (ServiceHelper.StarterHelper.runWaitForLayouts() == false) {
+                BA.LogInfo("stopping spontaneous created service");
+                stopSelf();
+            }
 		}
     }
 		@Override
@@ -124,7 +127,8 @@ public class servbackup extends android.app.Service{
 @Override
 	public android.os.IBinder onBind(android.content.Intent intent) {
 		return null;
-	}public anywheresoftware.b4a.keywords.Common __c = null;
+	}
+public anywheresoftware.b4a.keywords.Common __c = null;
 public b4a.example.main _main = null;
 public b4a.example.servbackup4 _servbackup4 = null;
 public b4a.example.principal _principal = null;
@@ -132,22 +136,25 @@ public b4a.example.datosglobales _datosglobales = null;
 public b4a.example.fxglobales _fxglobales = null;
 public b4a.example.login _login = null;
 public b4a.example.configuracion _configuracion = null;
-public b4a.example.backup _backup = null;
-public b4a.example.servbackup2 _servbackup2 = null;
 public b4a.example.servbackup3 _servbackup3 = null;
+public b4a.example.servbackup2 _servbackup2 = null;
+public b4a.example.backup _backup = null;
 public b4a.example.starter _starter = null;
-public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 7;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 33;BA.debugLine="End Sub";
-return "";
-}
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _service_create() throws Exception{
- //BA.debugLineNum = 35;BA.debugLine="Sub Service_Create";
- //BA.debugLineNum = 36;BA.debugLine="DatosGlobales.EnPrincipal = False";
+RDebugUtils.currentModule="servbackup";
+if (Debug.shouldDelegate(processBA, "service_create", false))
+	 {return ((String) Debug.delegate(processBA, "service_create", null));}
+RDebugUtils.currentLine=6750208;
+ //BA.debugLineNum = 6750208;BA.debugLine="Sub Service_Create";
+RDebugUtils.currentLine=6750209;
+ //BA.debugLineNum = 6750209;BA.debugLine="DatosGlobales.EnPrincipal = False";
 mostCurrent._datosglobales._enprincipal /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 37;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
+RDebugUtils.currentLine=6750210;
+ //BA.debugLineNum = 6750210;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
 mostCurrent._service.AutomaticForegroundMode = mostCurrent._service.AUTOMATIC_FOREGROUND_NEVER;
- //BA.debugLineNum = 55;BA.debugLine="End Sub";
+RDebugUtils.currentLine=6750228;
+ //BA.debugLineNum = 6750228;BA.debugLine="End Sub";
 return "";
 }
 }

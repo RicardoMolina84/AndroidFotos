@@ -34,7 +34,7 @@ public class principal extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new BA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.principal");
+			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.principal");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -335,6 +335,15 @@ public class principal extends Activity implements B4AActivity{
             
     }
 
+
+
+public static void initializeProcessGlobals() {
+             try {
+                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public anywheresoftware.b4a.objects.ScrollViewWrapper _svconfiguracion = null;
 public anywheresoftware.b4a.objects.ButtonWrapper _btnlogin = null;
@@ -348,150 +357,102 @@ public anywheresoftware.b4a.objects.ButtonWrapper _btncargarimg = null;
 public anywheresoftware.b4a.objects.ImageViewWrapper _imageview1 = null;
 public anywheresoftware.b4a.net.FTPWrapper _ftp_consulta = null;
 public anywheresoftware.b4a.net.FTPWrapper _ftp_consulta_carp_int = null;
+public anywheresoftware.b4a.agraham.dialogs2.InputDialog.FileDialog _fd = null;
+public static String _pathseleccionado = "";
+public anywheresoftware.b4a.objects.ButtonWrapper _btnselcarpeta = null;
+public anywheresoftware.b4a.objects.CompoundButtonWrapper.RadioButtonWrapper _rbinterna = null;
+public anywheresoftware.b4a.objects.CompoundButtonWrapper.RadioButtonWrapper _rbexterna = null;
 public b4a.example.main _main = null;
 public b4a.example.servbackup4 _servbackup4 = null;
 public b4a.example.datosglobales _datosglobales = null;
 public b4a.example.fxglobales _fxglobales = null;
 public b4a.example.login _login = null;
 public b4a.example.configuracion _configuracion = null;
+public b4a.example.servbackup3 _servbackup3 = null;
+public b4a.example.servbackup2 _servbackup2 = null;
 public b4a.example.backup _backup = null;
 public b4a.example.servbackup _servbackup = null;
-public b4a.example.servbackup2 _servbackup2 = null;
-public b4a.example.servbackup3 _servbackup3 = null;
 public b4a.example.starter _starter = null;
-
-public static void initializeProcessGlobals() {
-             try {
-                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-}
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
- //BA.debugLineNum = 34;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 38;BA.debugLine="DatosGlobales.EnPrincipal = True";
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
+RDebugUtils.currentLine=1900544;
+ //BA.debugLineNum = 1900544;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=1900548;
+ //BA.debugLineNum = 1900548;BA.debugLine="DatosGlobales.EnPrincipal = True";
 mostCurrent._datosglobales._enprincipal /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 41;BA.debugLine="Activity.LoadLayout(\"configuracion\") 're utilizo";
+RDebugUtils.currentLine=1900551;
+ //BA.debugLineNum = 1900551;BA.debugLine="Activity.LoadLayout(\"configuracion\") 're utilizo";
 mostCurrent._activity.LoadLayout("configuracion",mostCurrent.activityBA);
- //BA.debugLineNum = 42;BA.debugLine="SvConfiguracion.Panel.LoadLayout(\"principal\")";
+RDebugUtils.currentLine=1900552;
+ //BA.debugLineNum = 1900552;BA.debugLine="SvConfiguracion.Panel.LoadLayout(\"principal\")";
 mostCurrent._svconfiguracion.getPanel().LoadLayout("principal",mostCurrent.activityBA);
- //BA.debugLineNum = 43;BA.debugLine="SvConfiguracion.Panel.Width = 320dip";
+RDebugUtils.currentLine=1900553;
+ //BA.debugLineNum = 1900553;BA.debugLine="SvConfiguracion.Panel.Width = 320dip";
 mostCurrent._svconfiguracion.getPanel().setWidth(anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (320)));
- //BA.debugLineNum = 44;BA.debugLine="SvConfiguracion.Panel.Height = 1100dip";
+RDebugUtils.currentLine=1900554;
+ //BA.debugLineNum = 1900554;BA.debugLine="SvConfiguracion.Panel.Height = 1100dip";
 mostCurrent._svconfiguracion.getPanel().setHeight(anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (1100)));
- //BA.debugLineNum = 49;BA.debugLine="End Sub";
+RDebugUtils.currentLine=1900560;
+ //BA.debugLineNum = 1900560;BA.debugLine="RbInterna.Checked = True";
+mostCurrent._rbinterna.setChecked(anywheresoftware.b4a.keywords.Common.True);
+RDebugUtils.currentLine=1900561;
+ //BA.debugLineNum = 1900561;BA.debugLine="RbInterna_CheckedChange(True)";
+_rbinterna_checkedchange(anywheresoftware.b4a.keywords.Common.True);
+RDebugUtils.currentLine=1900563;
+ //BA.debugLineNum = 1900563;BA.debugLine="End Sub";
+return "";
+}
+public static String  _rbinterna_checkedchange(boolean _checked) throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "rbinterna_checkedchange", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "rbinterna_checkedchange", new Object[] {_checked}));}
+RDebugUtils.currentLine=10878976;
+ //BA.debugLineNum = 10878976;BA.debugLine="Private Sub RbInterna_CheckedChange(Checked As Boo";
+RDebugUtils.currentLine=10878977;
+ //BA.debugLineNum = 10878977;BA.debugLine="PathSeleccionado = File.DirInternal";
+mostCurrent._pathseleccionado = anywheresoftware.b4a.keywords.Common.File.getDirInternal();
+RDebugUtils.currentLine=10878978;
+ //BA.debugLineNum = 10878978;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 55;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 57;BA.debugLine="End Sub";
+RDebugUtils.currentModule="principal";
+RDebugUtils.currentLine=2031616;
+ //BA.debugLineNum = 2031616;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+RDebugUtils.currentLine=2031618;
+ //BA.debugLineNum = 2031618;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 51;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 53;BA.debugLine="End Sub";
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
+RDebugUtils.currentLine=1966080;
+ //BA.debugLineNum = 1966080;BA.debugLine="Sub Activity_Resume";
+RDebugUtils.currentLine=1966082;
+ //BA.debugLineNum = 1966082;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btncargarimg_click() throws Exception{
- //BA.debugLineNum = 139;BA.debugLine="Private Sub BtnCargarImg_Click";
- //BA.debugLineNum = 144;BA.debugLine="EncontroArchivoEnServidor(DatosGlobales.UsuarioRu";
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btncargarimg_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btncargarimg_click", null));}
+RDebugUtils.currentLine=2555904;
+ //BA.debugLineNum = 2555904;BA.debugLine="Private Sub BtnCargarImg_Click";
+RDebugUtils.currentLine=2555909;
+ //BA.debugLineNum = 2555909;BA.debugLine="EncontroArchivoEnServidor(DatosGlobales.UsuarioRu";
 _encontroarchivoenservidor(mostCurrent._datosglobales._usuariorutafotos /*String*/ );
- //BA.debugLineNum = 167;BA.debugLine="End Sub";
-return "";
-}
-public static String  _btncerrarapp_click() throws Exception{
-anywheresoftware.b4j.object.JavaObject _jo = null;
- //BA.debugLineNum = 88;BA.debugLine="Private Sub BtnCerrarApp_Click";
- //BA.debugLineNum = 89;BA.debugLine="StopService(ServBackUp)";
-anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup.getObject()));
- //BA.debugLineNum = 90;BA.debugLine="StopService(ServBackUp2)";
-anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup2.getObject()));
- //BA.debugLineNum = 91;BA.debugLine="StopService(ServBackUp4)";
-anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
- //BA.debugLineNum = 93;BA.debugLine="Dim jo As JavaObject";
-_jo = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 94;BA.debugLine="jo.InitializeContext";
-_jo.InitializeContext(processBA);
- //BA.debugLineNum = 95;BA.debugLine="jo.RunMethod(\"finishAffinity\", Null)";
-_jo.RunMethod("finishAffinity",(Object[])(anywheresoftware.b4a.keywords.Common.Null));
- //BA.debugLineNum = 96;BA.debugLine="End Sub";
-return "";
-}
-public static String  _btnconfiguracion_click() throws Exception{
- //BA.debugLineNum = 70;BA.debugLine="Private Sub BtnConfiguracion_Click";
- //BA.debugLineNum = 71;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
-if (mostCurrent._datosglobales._ejecutandose /*boolean*/ ==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 72;BA.debugLine="StartActivity(Configuracion)";
-anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._configuracion.getObject()));
- }else {
- //BA.debugLineNum = 74;BA.debugLine="ToastMessageShow(\"#ERROR: no es posible realizar";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("#ERROR: no es posible realizar esta operación mientras hay una copia en curso."),anywheresoftware.b4a.keywords.Common.True);
- };
- //BA.debugLineNum = 76;BA.debugLine="End Sub";
-return "";
-}
-public static String  _btndetener_click() throws Exception{
- //BA.debugLineNum = 133;BA.debugLine="Private Sub BtnDetener_Click";
- //BA.debugLineNum = 135;BA.debugLine="StopService(ServBackUp4)";
-anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
- //BA.debugLineNum = 137;BA.debugLine="End Sub";
-return "";
-}
-public static String  _btnejecutar_click() throws Exception{
- //BA.debugLineNum = 98;BA.debugLine="Private Sub BtnEjecutar_Click";
- //BA.debugLineNum = 101;BA.debugLine="Log(\"BtnEjecutar_Click --> Log? \" & DatosGlobales";
-anywheresoftware.b4a.keywords.Common.LogImpl("62293763","BtnEjecutar_Click --> Log? "+BA.ObjectToString(mostCurrent._datosglobales._logok /*boolean*/ )+" - Ejecutandose? "+BA.ObjectToString(mostCurrent._datosglobales._ejecutandose /*boolean*/ ),0);
- //BA.debugLineNum = 103;BA.debugLine="DatosGlobales.Ejecutandose = False";
-mostCurrent._datosglobales._ejecutandose /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 105;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
-if (mostCurrent._datosglobales._ejecutandose /*boolean*/ ==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 110;BA.debugLine="If DatosGlobales.LogOk = True Then";
-if (mostCurrent._datosglobales._logok /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 113;BA.debugLine="StopService(ServBackUp4)";
-anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
- //BA.debugLineNum = 115;BA.debugLine="StartService(ServBackUp4)";
-anywheresoftware.b4a.keywords.Common.StartService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
- }else {
- //BA.debugLineNum = 117;BA.debugLine="StartActivity(Login)";
-anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._login.getObject()));
- };
- //BA.debugLineNum = 120;BA.debugLine="Activity.Finish";
-mostCurrent._activity.Finish();
- }else {
- //BA.debugLineNum = 122;BA.debugLine="ToastMessageShow(\"#ERROR: no es posible realizar";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("#ERROR: no es posible realizar esta operación mientras hay una copia en curso."),anywheresoftware.b4a.keywords.Common.True);
- };
- //BA.debugLineNum = 131;BA.debugLine="End Sub";
-return "";
-}
-public static String  _btnlogin_click() throws Exception{
- //BA.debugLineNum = 62;BA.debugLine="Private Sub BtnLogin_Click";
- //BA.debugLineNum = 63;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
-if (mostCurrent._datosglobales._ejecutandose /*boolean*/ ==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 64;BA.debugLine="StartActivity(Login)";
-anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._login.getObject()));
- }else {
- //BA.debugLineNum = 66;BA.debugLine="ToastMessageShow(\"#ERROR: no es posible realizar";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("#ERROR: no es posible realizar esta operación mientras hay una copia en curso."),anywheresoftware.b4a.keywords.Common.True);
- };
- //BA.debugLineNum = 68;BA.debugLine="End Sub";
-return "";
-}
-public static String  _btnsalir_click() throws Exception{
- //BA.debugLineNum = 83;BA.debugLine="Private Sub BtnSalir_Click";
- //BA.debugLineNum = 84;BA.debugLine="DatosGlobales.EnPrincipal = False";
-mostCurrent._datosglobales._enprincipal /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 85;BA.debugLine="Activity.Finish";
-mostCurrent._activity.Finish();
- //BA.debugLineNum = 86;BA.debugLine="End Sub";
-return "";
-}
-public static String  _btnverfotos_click() throws Exception{
- //BA.debugLineNum = 79;BA.debugLine="Private Sub BtnVerFotos_Click";
- //BA.debugLineNum = 81;BA.debugLine="End Sub";
+RDebugUtils.currentLine=2555932;
+ //BA.debugLineNum = 2555932;BA.debugLine="End Sub";
 return "";
 }
 public static anywheresoftware.b4a.keywords.Common.ResumableSubWrapper  _encontroarchivoenservidor(String _unarutaserver) throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "encontroarchivoenservidor", false))
+	 {return ((anywheresoftware.b4a.keywords.Common.ResumableSubWrapper) Debug.delegate(mostCurrent.activityBA, "encontroarchivoenservidor", new Object[] {_unarutaserver}));}
 ResumableSub_EncontroArchivoEnServidor rsub = new ResumableSub_EncontroArchivoEnServidor(null,_unarutaserver);
 rsub.resume(processBA, null);
 return (anywheresoftware.b4a.keywords.Common.ResumableSubWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper(), rsub);
@@ -520,6 +481,7 @@ int limit21;
 
 @Override
 public void resume(BA ba, Object[] result) throws Exception{
+RDebugUtils.currentModule="principal";
 
     while (true) {
         switch (state) {
@@ -529,19 +491,25 @@ anywheresoftware.b4a.keywords.Common.ReturnFromResumableSub(this,null);return;}
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 177;BA.debugLine="Dim ListaCarpetasBase As List";
+RDebugUtils.currentLine=2621442;
+ //BA.debugLineNum = 2621442;BA.debugLine="Dim ListaCarpetasBase As List";
 _listacarpetasbase = new anywheresoftware.b4a.objects.collections.List();
- //BA.debugLineNum = 178;BA.debugLine="ListaCarpetasBase.Initialize";
+RDebugUtils.currentLine=2621443;
+ //BA.debugLineNum = 2621443;BA.debugLine="ListaCarpetasBase.Initialize";
 _listacarpetasbase.Initialize();
- //BA.debugLineNum = 180;BA.debugLine="Dim ListaCarpetasInternas As List";
+RDebugUtils.currentLine=2621445;
+ //BA.debugLineNum = 2621445;BA.debugLine="Dim ListaCarpetasInternas As List";
 _listacarpetasinternas = new anywheresoftware.b4a.objects.collections.List();
- //BA.debugLineNum = 181;BA.debugLine="ListaCarpetasInternas.Initialize";
+RDebugUtils.currentLine=2621446;
+ //BA.debugLineNum = 2621446;BA.debugLine="ListaCarpetasInternas.Initialize";
 _listacarpetasinternas.Initialize();
- //BA.debugLineNum = 183;BA.debugLine="Dim rs As ResumableSub = ObtenerListaCarpetasBase";
+RDebugUtils.currentLine=2621448;
+ //BA.debugLineNum = 2621448;BA.debugLine="Dim rs As ResumableSub = ObtenerListaCarpetasBase";
 _rs = new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper();
 _rs = _obtenerlistacarpetasbase(_unarutaserver);
- //BA.debugLineNum = 184;BA.debugLine="Wait For(rs) Complete (Result As List)";
-anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, this, _rs);
+RDebugUtils.currentLine=2621449;
+ //BA.debugLineNum = 2621449;BA.debugLine="Wait For(rs) Complete (Result As List)";
+anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "principal", "encontroarchivoenservidor"), _rs);
 this.state = 25;
 return;
 case 25:
@@ -549,7 +517,8 @@ case 25:
 this.state = 1;
 _result = (anywheresoftware.b4a.objects.collections.List) result[0];
 ;
- //BA.debugLineNum = 185;BA.debugLine="If Result.Size > 0 Then";
+RDebugUtils.currentLine=2621450;
+ //BA.debugLineNum = 2621450;BA.debugLine="If Result.Size > 0 Then";
 if (true) break;
 
 case 1:
@@ -562,7 +531,8 @@ this.state = 3;
 case 3:
 //C
 this.state = 4;
- //BA.debugLineNum = 186;BA.debugLine="ListaCarpetasBase = Result";
+RDebugUtils.currentLine=2621451;
+ //BA.debugLineNum = 2621451;BA.debugLine="ListaCarpetasBase = Result";
 _listacarpetasbase = _result;
  if (true) break;
 
@@ -570,9 +540,11 @@ case 4:
 //C
 this.state = 5;
 ;
- //BA.debugLineNum = 189;BA.debugLine="Log(\"CANTIDAD DE CARPETAS --> Tamaño de 'ListaCar";
-anywheresoftware.b4a.keywords.Common.LogImpl("62490382","CANTIDAD DE CARPETAS --> Tamaño de 'ListaCarpetasBase.Size':"+BA.NumberToString(_listacarpetasbase.getSize()),0);
- //BA.debugLineNum = 192;BA.debugLine="For i = 0 To ListaCarpetasBase.Size-1";
+RDebugUtils.currentLine=2621454;
+ //BA.debugLineNum = 2621454;BA.debugLine="Log(\"CANTIDAD DE CARPETAS --> Tamaño de 'ListaCar";
+anywheresoftware.b4a.keywords.Common.LogImpl("52621454","CANTIDAD DE CARPETAS --> Tamaño de 'ListaCarpetasBase.Size':"+BA.NumberToString(_listacarpetasbase.getSize()),0);
+RDebugUtils.currentLine=2621457;
+ //BA.debugLineNum = 2621457;BA.debugLine="For i = 0 To ListaCarpetasBase.Size-1";
 if (true) break;
 
 case 5:
@@ -599,13 +571,16 @@ if (true) break;
 case 7:
 //C
 this.state = 8;
- //BA.debugLineNum = 193;BA.debugLine="Log(\" ### \" & ListaCarpetasBase.Get(i) & \" ### \"";
-anywheresoftware.b4a.keywords.Common.LogImpl("62490386"," ### "+BA.ObjectToString(_listacarpetasbase.Get(_i))+" ### ",0);
- //BA.debugLineNum = 195;BA.debugLine="Dim rs As ResumableSub = ObtenerListaCarpetasBas";
+RDebugUtils.currentLine=2621458;
+ //BA.debugLineNum = 2621458;BA.debugLine="Log(\" ### \" & ListaCarpetasBase.Get(i) & \" ### \"";
+anywheresoftware.b4a.keywords.Common.LogImpl("52621458"," ### "+BA.ObjectToString(_listacarpetasbase.Get(_i))+" ### ",0);
+RDebugUtils.currentLine=2621460;
+ //BA.debugLineNum = 2621460;BA.debugLine="Dim rs As ResumableSub = ObtenerListaCarpetasBas";
 _rs = new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper();
 _rs = _obtenerlistacarpetasbase(BA.ObjectToString(_listacarpetasbase.Get(_i)));
- //BA.debugLineNum = 196;BA.debugLine="Wait For(rs) Complete (Result As List)";
-anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, this, _rs);
+RDebugUtils.currentLine=2621461;
+ //BA.debugLineNum = 2621461;BA.debugLine="Wait For(rs) Complete (Result As List)";
+anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "principal", "encontroarchivoenservidor"), _rs);
 this.state = 28;
 return;
 case 28:
@@ -613,7 +588,8 @@ case 28:
 this.state = 8;
 _result = (anywheresoftware.b4a.objects.collections.List) result[0];
 ;
- //BA.debugLineNum = 197;BA.debugLine="If Result.Size > 0 Then";
+RDebugUtils.currentLine=2621462;
+ //BA.debugLineNum = 2621462;BA.debugLine="If Result.Size > 0 Then";
 if (true) break;
 
 case 8:
@@ -626,7 +602,8 @@ this.state = 10;
 case 10:
 //C
 this.state = 11;
- //BA.debugLineNum = 199;BA.debugLine="For j = 0 To Result.Size -1";
+RDebugUtils.currentLine=2621464;
+ //BA.debugLineNum = 2621464;BA.debugLine="For j = 0 To Result.Size -1";
 if (true) break;
 
 case 11:
@@ -653,13 +630,16 @@ if (true) break;
 case 13:
 //C
 this.state = 14;
- //BA.debugLineNum = 201;BA.debugLine="Log(\" ## \" & Result.Get(j) & \" ## \")";
-anywheresoftware.b4a.keywords.Common.LogImpl("62490394"," ## "+BA.ObjectToString(_result.Get(_j))+" ## ",0);
- //BA.debugLineNum = 202;BA.debugLine="Dim rs As ResumableSub = ObtenerListaDeArchiv";
+RDebugUtils.currentLine=2621466;
+ //BA.debugLineNum = 2621466;BA.debugLine="Log(\" ## \" & Result.Get(j) & \" ## \")";
+anywheresoftware.b4a.keywords.Common.LogImpl("52621466"," ## "+BA.ObjectToString(_result.Get(_j))+" ## ",0);
+RDebugUtils.currentLine=2621467;
+ //BA.debugLineNum = 2621467;BA.debugLine="Dim rs As ResumableSub = ObtenerListaDeArchiv";
 _rs = new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper();
 _rs = _obtenerlistadearchivos(BA.ObjectToString(_result.Get(_j)));
- //BA.debugLineNum = 203;BA.debugLine="Wait For(rs) Complete (ResultArch As List)";
-anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, this, _rs);
+RDebugUtils.currentLine=2621468;
+ //BA.debugLineNum = 2621468;BA.debugLine="Wait For(rs) Complete (ResultArch As List)";
+anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "principal", "encontroarchivoenservidor"), _rs);
 this.state = 31;
 return;
 case 31:
@@ -667,7 +647,8 @@ case 31:
 this.state = 14;
 _resultarch = (anywheresoftware.b4a.objects.collections.List) result[0];
 ;
- //BA.debugLineNum = 204;BA.debugLine="If ResultArch.Size > 0 Then";
+RDebugUtils.currentLine=2621469;
+ //BA.debugLineNum = 2621469;BA.debugLine="If ResultArch.Size > 0 Then";
 if (true) break;
 
 case 14:
@@ -680,7 +661,8 @@ this.state = 16;
 case 16:
 //C
 this.state = 17;
- //BA.debugLineNum = 205;BA.debugLine="For k = 0 To ResultArch.Size -1";
+RDebugUtils.currentLine=2621470;
+ //BA.debugLineNum = 2621470;BA.debugLine="For k = 0 To ResultArch.Size -1";
 if (true) break;
 
 case 17:
@@ -707,8 +689,9 @@ if (true) break;
 case 19:
 //C
 this.state = 33;
- //BA.debugLineNum = 206;BA.debugLine="Log(\"- \" & ResultArch.Get(k) & \" -\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("62490399","- "+BA.ObjectToString(_resultarch.Get(_k))+" -",0);
+RDebugUtils.currentLine=2621471;
+ //BA.debugLineNum = 2621471;BA.debugLine="Log(\"- \" & ResultArch.Get(k) & \" -\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("52621471","- "+BA.ObjectToString(_resultarch.Get(_k))+" -",0);
  if (true) break;
 if (true) break;
 
@@ -742,45 +725,262 @@ case 24:
 //C
 this.state = -1;
 ;
- //BA.debugLineNum = 225;BA.debugLine="End Sub";
+RDebugUtils.currentLine=2621490;
+ //BA.debugLineNum = 2621490;BA.debugLine="End Sub";
 if (true) break;
 
             }
         }
     }
 }
-public static void  _complete(anywheresoftware.b4a.objects.collections.List _result) throws Exception{
+public static String  _btncerrarapp_click() throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btncerrarapp_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btncerrarapp_click", null));}
+anywheresoftware.b4j.object.JavaObject _jo = null;
+RDebugUtils.currentLine=2359296;
+ //BA.debugLineNum = 2359296;BA.debugLine="Private Sub BtnCerrarApp_Click";
+RDebugUtils.currentLine=2359297;
+ //BA.debugLineNum = 2359297;BA.debugLine="StopService(ServBackUp)";
+anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup.getObject()));
+RDebugUtils.currentLine=2359298;
+ //BA.debugLineNum = 2359298;BA.debugLine="StopService(ServBackUp2)";
+anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup2.getObject()));
+RDebugUtils.currentLine=2359299;
+ //BA.debugLineNum = 2359299;BA.debugLine="StopService(ServBackUp4)";
+anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
+RDebugUtils.currentLine=2359301;
+ //BA.debugLineNum = 2359301;BA.debugLine="Dim jo As JavaObject";
+_jo = new anywheresoftware.b4j.object.JavaObject();
+RDebugUtils.currentLine=2359302;
+ //BA.debugLineNum = 2359302;BA.debugLine="jo.InitializeContext";
+_jo.InitializeContext(processBA);
+RDebugUtils.currentLine=2359303;
+ //BA.debugLineNum = 2359303;BA.debugLine="jo.RunMethod(\"finishAffinity\", Null)";
+_jo.RunMethod("finishAffinity",(Object[])(anywheresoftware.b4a.keywords.Common.Null));
+RDebugUtils.currentLine=2359304;
+ //BA.debugLineNum = 2359304;BA.debugLine="End Sub";
+return "";
 }
-public static String  _globals() throws Exception{
- //BA.debugLineNum = 13;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 17;BA.debugLine="Private SvConfiguracion As ScrollView";
-mostCurrent._svconfiguracion = new anywheresoftware.b4a.objects.ScrollViewWrapper();
- //BA.debugLineNum = 18;BA.debugLine="Private BtnLogin As Button";
-mostCurrent._btnlogin = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 19;BA.debugLine="Private BtnConfiguracion As Button";
-mostCurrent._btnconfiguracion = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 20;BA.debugLine="Private BtnVerFotos As Button";
-mostCurrent._btnverfotos = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 21;BA.debugLine="Private BtnSalir As Button";
-mostCurrent._btnsalir = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 22;BA.debugLine="Private BtnCerrarApp As Button";
-mostCurrent._btncerrarapp = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 23;BA.debugLine="Private BtnEjecutar As Button";
-mostCurrent._btnejecutar = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 24;BA.debugLine="Private BtnDetener As Button";
-mostCurrent._btndetener = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 25;BA.debugLine="Private BtnCargarImg As Button";
-mostCurrent._btncargarimg = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 26;BA.debugLine="Private ImageView1 As ImageView";
-mostCurrent._imageview1 = new anywheresoftware.b4a.objects.ImageViewWrapper();
- //BA.debugLineNum = 29;BA.debugLine="Dim FTP_Consulta As FTP";
-mostCurrent._ftp_consulta = new anywheresoftware.b4a.net.FTPWrapper();
- //BA.debugLineNum = 30;BA.debugLine="Dim FTP_Consulta_Carp_Int As FTP";
-mostCurrent._ftp_consulta_carp_int = new anywheresoftware.b4a.net.FTPWrapper();
- //BA.debugLineNum = 32;BA.debugLine="End Sub";
+public static String  _btnconfiguracion_click() throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnconfiguracion_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnconfiguracion_click", null));}
+RDebugUtils.currentLine=2162688;
+ //BA.debugLineNum = 2162688;BA.debugLine="Private Sub BtnConfiguracion_Click";
+RDebugUtils.currentLine=2162689;
+ //BA.debugLineNum = 2162689;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
+if (mostCurrent._datosglobales._ejecutandose /*boolean*/ ==anywheresoftware.b4a.keywords.Common.False) { 
+RDebugUtils.currentLine=2162690;
+ //BA.debugLineNum = 2162690;BA.debugLine="StartActivity(Configuracion)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._configuracion.getObject()));
+ }else {
+RDebugUtils.currentLine=2162692;
+ //BA.debugLineNum = 2162692;BA.debugLine="ToastMessageShow(\"#ERROR: no es posible realizar";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("#ERROR: no es posible realizar esta operación mientras hay una copia en curso."),anywheresoftware.b4a.keywords.Common.True);
+ };
+RDebugUtils.currentLine=2162694;
+ //BA.debugLineNum = 2162694;BA.debugLine="End Sub";
+return "";
+}
+public static String  _btndetener_click() throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btndetener_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btndetener_click", null));}
+RDebugUtils.currentLine=2490368;
+ //BA.debugLineNum = 2490368;BA.debugLine="Private Sub BtnDetener_Click";
+RDebugUtils.currentLine=2490370;
+ //BA.debugLineNum = 2490370;BA.debugLine="StopService(ServBackUp4)";
+anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
+RDebugUtils.currentLine=2490372;
+ //BA.debugLineNum = 2490372;BA.debugLine="End Sub";
+return "";
+}
+public static String  _btnejecutar_click() throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnejecutar_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnejecutar_click", null));}
+RDebugUtils.currentLine=2424832;
+ //BA.debugLineNum = 2424832;BA.debugLine="Private Sub BtnEjecutar_Click";
+RDebugUtils.currentLine=2424835;
+ //BA.debugLineNum = 2424835;BA.debugLine="Log(\"BtnEjecutar_Click --> Log? \" & DatosGlobales";
+anywheresoftware.b4a.keywords.Common.LogImpl("52424835","BtnEjecutar_Click --> Log? "+BA.ObjectToString(mostCurrent._datosglobales._logok /*boolean*/ )+" - Ejecutandose? "+BA.ObjectToString(mostCurrent._datosglobales._ejecutandose /*boolean*/ ),0);
+RDebugUtils.currentLine=2424837;
+ //BA.debugLineNum = 2424837;BA.debugLine="DatosGlobales.Ejecutandose = False";
+mostCurrent._datosglobales._ejecutandose /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
+RDebugUtils.currentLine=2424839;
+ //BA.debugLineNum = 2424839;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
+if (mostCurrent._datosglobales._ejecutandose /*boolean*/ ==anywheresoftware.b4a.keywords.Common.False) { 
+RDebugUtils.currentLine=2424844;
+ //BA.debugLineNum = 2424844;BA.debugLine="If DatosGlobales.LogOk = True Then";
+if (mostCurrent._datosglobales._logok /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
+RDebugUtils.currentLine=2424847;
+ //BA.debugLineNum = 2424847;BA.debugLine="StopService(ServBackUp4)";
+anywheresoftware.b4a.keywords.Common.StopService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
+RDebugUtils.currentLine=2424849;
+ //BA.debugLineNum = 2424849;BA.debugLine="StartService(ServBackUp4)";
+anywheresoftware.b4a.keywords.Common.StartService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
+ }else {
+RDebugUtils.currentLine=2424851;
+ //BA.debugLineNum = 2424851;BA.debugLine="StartActivity(Login)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._login.getObject()));
+ };
+RDebugUtils.currentLine=2424854;
+ //BA.debugLineNum = 2424854;BA.debugLine="Activity.Finish";
+mostCurrent._activity.Finish();
+ }else {
+RDebugUtils.currentLine=2424856;
+ //BA.debugLineNum = 2424856;BA.debugLine="ToastMessageShow(\"#ERROR: no es posible realizar";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("#ERROR: no es posible realizar esta operación mientras hay una copia en curso."),anywheresoftware.b4a.keywords.Common.True);
+ };
+RDebugUtils.currentLine=2424865;
+ //BA.debugLineNum = 2424865;BA.debugLine="End Sub";
+return "";
+}
+public static String  _btnlogin_click() throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnlogin_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnlogin_click", null));}
+RDebugUtils.currentLine=2097152;
+ //BA.debugLineNum = 2097152;BA.debugLine="Private Sub BtnLogin_Click";
+RDebugUtils.currentLine=2097153;
+ //BA.debugLineNum = 2097153;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
+if (mostCurrent._datosglobales._ejecutandose /*boolean*/ ==anywheresoftware.b4a.keywords.Common.False) { 
+RDebugUtils.currentLine=2097154;
+ //BA.debugLineNum = 2097154;BA.debugLine="StartActivity(Login)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._login.getObject()));
+ }else {
+RDebugUtils.currentLine=2097156;
+ //BA.debugLineNum = 2097156;BA.debugLine="ToastMessageShow(\"#ERROR: no es posible realizar";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("#ERROR: no es posible realizar esta operación mientras hay una copia en curso."),anywheresoftware.b4a.keywords.Common.True);
+ };
+RDebugUtils.currentLine=2097158;
+ //BA.debugLineNum = 2097158;BA.debugLine="End Sub";
+return "";
+}
+public static String  _btnsalir_click() throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnsalir_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnsalir_click", null));}
+RDebugUtils.currentLine=2293760;
+ //BA.debugLineNum = 2293760;BA.debugLine="Private Sub BtnSalir_Click";
+RDebugUtils.currentLine=2293761;
+ //BA.debugLineNum = 2293761;BA.debugLine="DatosGlobales.EnPrincipal = False";
+mostCurrent._datosglobales._enprincipal /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
+RDebugUtils.currentLine=2293762;
+ //BA.debugLineNum = 2293762;BA.debugLine="Activity.Finish";
+mostCurrent._activity.Finish();
+RDebugUtils.currentLine=2293763;
+ //BA.debugLineNum = 2293763;BA.debugLine="End Sub";
+return "";
+}
+public static void  _btnselcarpeta_click() throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnselcarpeta_click", false))
+	 {Debug.delegate(mostCurrent.activityBA, "btnselcarpeta_click", null); return;}
+ResumableSub_BtnSelCarpeta_Click rsub = new ResumableSub_BtnSelCarpeta_Click(null);
+rsub.resume(processBA, null);
+}
+public static class ResumableSub_BtnSelCarpeta_Click extends BA.ResumableSub {
+public ResumableSub_BtnSelCarpeta_Click(b4a.example.principal parent) {
+this.parent = parent;
+}
+b4a.example.principal parent;
+Object _sf = null;
+int _result = 0;
+
+@Override
+public void resume(BA ba, Object[] result) throws Exception{
+RDebugUtils.currentModule="principal";
+
+    while (true) {
+        switch (state) {
+            case -1:
+return;
+
+case 0:
+//C
+this.state = 1;
+RDebugUtils.currentLine=2818050;
+ //BA.debugLineNum = 2818050;BA.debugLine="fd.ShowOnlyFolders = True";
+parent.mostCurrent._fd.setShowOnlyFolders(anywheresoftware.b4a.keywords.Common.True);
+RDebugUtils.currentLine=2818052;
+ //BA.debugLineNum = 2818052;BA.debugLine="fd.FilePath = PathSeleccionado 'File.DirInternal";
+parent.mostCurrent._fd.setFilePath(parent.mostCurrent._pathseleccionado);
+RDebugUtils.currentLine=2818053;
+ //BA.debugLineNum = 2818053;BA.debugLine="fd.FileFilter = Null ' No filtrar ningún archivo";
+parent.mostCurrent._fd.setFileFilter(BA.ObjectToString(anywheresoftware.b4a.keywords.Common.Null));
+RDebugUtils.currentLine=2818055;
+ //BA.debugLineNum = 2818055;BA.debugLine="Dim sf As Object = fd.ShowAsync(\"Seleccioná una r";
+_sf = parent.mostCurrent._fd.ShowAsync(BA.ObjectToCharSequence("Seleccioná una ruta"),"Si","Cancelar","No",mostCurrent.activityBA,(android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null),anywheresoftware.b4a.keywords.Common.False);
+RDebugUtils.currentLine=2818057;
+ //BA.debugLineNum = 2818057;BA.debugLine="Wait For (sf) Dialog_Result(Result As Int)";
+anywheresoftware.b4a.keywords.Common.WaitFor("dialog_result", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "principal", "btnselcarpeta_click"), _sf);
+this.state = 7;
+return;
+case 7:
+//C
+this.state = 1;
+_result = (Integer) result[0];
+;
+RDebugUtils.currentLine=2818059;
+ //BA.debugLineNum = 2818059;BA.debugLine="Log(\"Resultado: \" & Result)";
+anywheresoftware.b4a.keywords.Common.LogImpl("52818059","Resultado: "+BA.NumberToString(_result),0);
+RDebugUtils.currentLine=2818061;
+ //BA.debugLineNum = 2818061;BA.debugLine="If Result = DialogResponse.POSITIVE Then";
+if (true) break;
+
+case 1:
+//if
+this.state = 6;
+if (_result==anywheresoftware.b4a.keywords.Common.DialogResponse.POSITIVE) { 
+this.state = 3;
+}else {
+this.state = 5;
+}if (true) break;
+
+case 3:
+//C
+this.state = 6;
+RDebugUtils.currentLine=2818062;
+ //BA.debugLineNum = 2818062;BA.debugLine="Log(\"Selected Folder: \" & fd.FilePath)";
+anywheresoftware.b4a.keywords.Common.LogImpl("52818062","Selected Folder: "+parent.mostCurrent._fd.getFilePath(),0);
+ if (true) break;
+
+case 5:
+//C
+this.state = 6;
+RDebugUtils.currentLine=2818064;
+ //BA.debugLineNum = 2818064;BA.debugLine="Log(\"No se seleccionó ninguna carpeta.\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("52818064","No se seleccionó ninguna carpeta.",0);
+ if (true) break;
+
+case 6:
+//C
+this.state = -1;
+;
+RDebugUtils.currentLine=2818069;
+ //BA.debugLineNum = 2818069;BA.debugLine="End Sub";
+if (true) break;
+
+            }
+        }
+    }
+}
+public static String  _btnverfotos_click() throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnverfotos_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnverfotos_click", null));}
+RDebugUtils.currentLine=2228224;
+ //BA.debugLineNum = 2228224;BA.debugLine="Private Sub BtnVerFotos_Click";
+RDebugUtils.currentLine=2228226;
+ //BA.debugLineNum = 2228226;BA.debugLine="End Sub";
 return "";
 }
 public static anywheresoftware.b4a.keywords.Common.ResumableSubWrapper  _obtenerlistacarpetasbase(String _unarutaserver) throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "obtenerlistacarpetasbase", false))
+	 {return ((anywheresoftware.b4a.keywords.Common.ResumableSubWrapper) Debug.delegate(mostCurrent.activityBA, "obtenerlistacarpetasbase", new Object[] {_unarutaserver}));}
 ResumableSub_ObtenerListaCarpetasBase rsub = new ResumableSub_ObtenerListaCarpetasBase(null,_unarutaserver);
 rsub.resume(processBA, null);
 return (anywheresoftware.b4a.keywords.Common.ResumableSubWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper(), rsub);
@@ -805,6 +1005,7 @@ int limit15;
 
 @Override
 public void resume(BA ba, Object[] result) throws Exception{
+RDebugUtils.currentModule="principal";
 
     while (true) {
         switch (state) {
@@ -814,15 +1015,20 @@ anywheresoftware.b4a.keywords.Common.ReturnFromResumableSub(this,null);return;}
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 229;BA.debugLine="Dim TotalArchivos As Int";
+RDebugUtils.currentLine=2686977;
+ //BA.debugLineNum = 2686977;BA.debugLine="Dim TotalArchivos As Int";
 _totalarchivos = 0;
- //BA.debugLineNum = 230;BA.debugLine="Dim TotalCarpetas As Int";
+RDebugUtils.currentLine=2686978;
+ //BA.debugLineNum = 2686978;BA.debugLine="Dim TotalCarpetas As Int";
 _totalcarpetas = 0;
- //BA.debugLineNum = 231;BA.debugLine="Dim ListaCarpetasBase As List";
+RDebugUtils.currentLine=2686979;
+ //BA.debugLineNum = 2686979;BA.debugLine="Dim ListaCarpetasBase As List";
 _listacarpetasbase = new anywheresoftware.b4a.objects.collections.List();
- //BA.debugLineNum = 232;BA.debugLine="ListaCarpetasBase.Initialize";
+RDebugUtils.currentLine=2686980;
+ //BA.debugLineNum = 2686980;BA.debugLine="ListaCarpetasBase.Initialize";
 _listacarpetasbase.Initialize();
- //BA.debugLineNum = 233;BA.debugLine="If FTP_Consulta.IsInitialized = True Then";
+RDebugUtils.currentLine=2686981;
+ //BA.debugLineNum = 2686981;BA.debugLine="If FTP_Consulta.IsInitialized = True Then";
 if (true) break;
 
 case 1:
@@ -835,7 +1041,8 @@ this.state = 3;
 case 3:
 //C
 this.state = 4;
- //BA.debugLineNum = 234;BA.debugLine="FTP_Consulta.CloseNow";
+RDebugUtils.currentLine=2686982;
+ //BA.debugLineNum = 2686982;BA.debugLine="FTP_Consulta.CloseNow";
 parent.mostCurrent._ftp_consulta.CloseNow();
  if (true) break;
 
@@ -843,14 +1050,18 @@ case 4:
 //C
 this.state = 5;
 ;
- //BA.debugLineNum = 236;BA.debugLine="FTP_Consulta.Initialize(\"FTP\",DatosGlobales.Servi";
+RDebugUtils.currentLine=2686984;
+ //BA.debugLineNum = 2686984;BA.debugLine="FTP_Consulta.Initialize(\"FTP\",DatosGlobales.Servi";
 parent.mostCurrent._ftp_consulta.Initialize(processBA,"FTP",parent.mostCurrent._datosglobales._servidorip /*String*/ ,(int)(Double.parseDouble(parent.mostCurrent._datosglobales._servidorpuerto /*String*/ )),parent.mostCurrent._datosglobales._servidorusuario /*String*/ ,parent.mostCurrent._datosglobales._servidorclave /*String*/ );
- //BA.debugLineNum = 237;BA.debugLine="FTP_Consulta.PassiveMode = True";
+RDebugUtils.currentLine=2686985;
+ //BA.debugLineNum = 2686985;BA.debugLine="FTP_Consulta.PassiveMode = True";
 parent.mostCurrent._ftp_consulta.setPassiveMode(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 238;BA.debugLine="FTP_Consulta.List(unaRutaServer) 'ejemplo --> \"./";
+RDebugUtils.currentLine=2686986;
+ //BA.debugLineNum = 2686986;BA.debugLine="FTP_Consulta.List(unaRutaServer) 'ejemplo --> \"./";
 parent.mostCurrent._ftp_consulta.List(processBA,_unarutaserver);
- //BA.debugLineNum = 239;BA.debugLine="Wait For FTP_ListCompleted (ServerPath As String,";
-anywheresoftware.b4a.keywords.Common.WaitFor("ftp_listcompleted", processBA, this, null);
+RDebugUtils.currentLine=2686987;
+ //BA.debugLineNum = 2686987;BA.debugLine="Wait For FTP_ListCompleted (ServerPath As String,";
+anywheresoftware.b4a.keywords.Common.WaitFor("ftp_listcompleted", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "principal", "obtenerlistacarpetasbase"), null);
 this.state = 13;
 return;
 case 13:
@@ -861,7 +1072,8 @@ _success = (Boolean) result[1];
 _folders = (anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[]) result[2];
 _files = (anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[]) result[3];
 ;
- //BA.debugLineNum = 240;BA.debugLine="If Success  Then";
+RDebugUtils.currentLine=2686988;
+ //BA.debugLineNum = 2686988;BA.debugLine="If Success  Then";
 if (true) break;
 
 case 5:
@@ -874,11 +1086,14 @@ this.state = 7;
 case 7:
 //C
 this.state = 8;
- //BA.debugLineNum = 241;BA.debugLine="TotalArchivos = Files.Length";
+RDebugUtils.currentLine=2686989;
+ //BA.debugLineNum = 2686989;BA.debugLine="TotalArchivos = Files.Length";
 _totalarchivos = _files.length;
- //BA.debugLineNum = 242;BA.debugLine="TotalCarpetas = Folders.Length";
+RDebugUtils.currentLine=2686990;
+ //BA.debugLineNum = 2686990;BA.debugLine="TotalCarpetas = Folders.Length";
 _totalcarpetas = _folders.length;
- //BA.debugLineNum = 243;BA.debugLine="For j = 0 To TotalCarpetas-1";
+RDebugUtils.currentLine=2686991;
+ //BA.debugLineNum = 2686991;BA.debugLine="For j = 0 To TotalCarpetas-1";
 if (true) break;
 
 case 8:
@@ -905,7 +1120,8 @@ if (true) break;
 case 10:
 //C
 this.state = 15;
- //BA.debugLineNum = 244;BA.debugLine="ListaCarpetasBase.Add(unaRutaServer & \"/\" & Fol";
+RDebugUtils.currentLine=2686992;
+ //BA.debugLineNum = 2686992;BA.debugLine="ListaCarpetasBase.Add(unaRutaServer & \"/\" & Fol";
 _listacarpetasbase.Add((Object)(_unarutaserver+"/"+_folders[_j].getName()));
  if (true) break;
 if (true) break;
@@ -914,7 +1130,8 @@ case 11:
 //C
 this.state = 12;
 ;
- //BA.debugLineNum = 246;BA.debugLine="FTP_Consulta.CloseNow";
+RDebugUtils.currentLine=2686994;
+ //BA.debugLineNum = 2686994;BA.debugLine="FTP_Consulta.CloseNow";
 parent.mostCurrent._ftp_consulta.CloseNow();
  if (true) break;
 
@@ -922,19 +1139,22 @@ case 12:
 //C
 this.state = -1;
 ;
- //BA.debugLineNum = 248;BA.debugLine="Return ListaCarpetasBase";
+RDebugUtils.currentLine=2686996;
+ //BA.debugLineNum = 2686996;BA.debugLine="Return ListaCarpetasBase";
 if (true) {
 anywheresoftware.b4a.keywords.Common.ReturnFromResumableSub(this,(Object)(_listacarpetasbase));return;};
- //BA.debugLineNum = 249;BA.debugLine="End Sub";
+RDebugUtils.currentLine=2686997;
+ //BA.debugLineNum = 2686997;BA.debugLine="End Sub";
 if (true) break;
 
             }
         }
     }
 }
-public static void  _ftp_listcompleted(String _serverpath,boolean _success,anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[] _folders,anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[] _files) throws Exception{
-}
 public static anywheresoftware.b4a.keywords.Common.ResumableSubWrapper  _obtenerlistadearchivos(String _unarutaserver) throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "obtenerlistadearchivos", false))
+	 {return ((anywheresoftware.b4a.keywords.Common.ResumableSubWrapper) Debug.delegate(mostCurrent.activityBA, "obtenerlistadearchivos", new Object[] {_unarutaserver}));}
 ResumableSub_ObtenerListaDeArchivos rsub = new ResumableSub_ObtenerListaDeArchivos(null,_unarutaserver);
 rsub.resume(processBA, null);
 return (anywheresoftware.b4a.keywords.Common.ResumableSubWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper(), rsub);
@@ -958,6 +1178,7 @@ int limit13;
 
 @Override
 public void resume(BA ba, Object[] result) throws Exception{
+RDebugUtils.currentModule="principal";
 
     while (true) {
         switch (state) {
@@ -967,13 +1188,17 @@ anywheresoftware.b4a.keywords.Common.ReturnFromResumableSub(this,null);return;}
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 253;BA.debugLine="Dim TotalArchivos As Int";
+RDebugUtils.currentLine=2752513;
+ //BA.debugLineNum = 2752513;BA.debugLine="Dim TotalArchivos As Int";
 _totalarchivos = 0;
- //BA.debugLineNum = 255;BA.debugLine="Dim ListaCarpetasBase As List";
+RDebugUtils.currentLine=2752515;
+ //BA.debugLineNum = 2752515;BA.debugLine="Dim ListaCarpetasBase As List";
 _listacarpetasbase = new anywheresoftware.b4a.objects.collections.List();
- //BA.debugLineNum = 256;BA.debugLine="ListaCarpetasBase.Initialize";
+RDebugUtils.currentLine=2752516;
+ //BA.debugLineNum = 2752516;BA.debugLine="ListaCarpetasBase.Initialize";
 _listacarpetasbase.Initialize();
- //BA.debugLineNum = 257;BA.debugLine="If FTP_Consulta.IsInitialized = True Then";
+RDebugUtils.currentLine=2752517;
+ //BA.debugLineNum = 2752517;BA.debugLine="If FTP_Consulta.IsInitialized = True Then";
 if (true) break;
 
 case 1:
@@ -986,7 +1211,8 @@ this.state = 3;
 case 3:
 //C
 this.state = 4;
- //BA.debugLineNum = 258;BA.debugLine="FTP_Consulta.CloseNow";
+RDebugUtils.currentLine=2752518;
+ //BA.debugLineNum = 2752518;BA.debugLine="FTP_Consulta.CloseNow";
 parent.mostCurrent._ftp_consulta.CloseNow();
  if (true) break;
 
@@ -994,14 +1220,18 @@ case 4:
 //C
 this.state = 5;
 ;
- //BA.debugLineNum = 260;BA.debugLine="FTP_Consulta.Initialize(\"FTP\",DatosGlobales.Servi";
+RDebugUtils.currentLine=2752520;
+ //BA.debugLineNum = 2752520;BA.debugLine="FTP_Consulta.Initialize(\"FTP\",DatosGlobales.Servi";
 parent.mostCurrent._ftp_consulta.Initialize(processBA,"FTP",parent.mostCurrent._datosglobales._servidorip /*String*/ ,(int)(Double.parseDouble(parent.mostCurrent._datosglobales._servidorpuerto /*String*/ )),parent.mostCurrent._datosglobales._servidorusuario /*String*/ ,parent.mostCurrent._datosglobales._servidorclave /*String*/ );
- //BA.debugLineNum = 261;BA.debugLine="FTP_Consulta.PassiveMode = True";
+RDebugUtils.currentLine=2752521;
+ //BA.debugLineNum = 2752521;BA.debugLine="FTP_Consulta.PassiveMode = True";
 parent.mostCurrent._ftp_consulta.setPassiveMode(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 262;BA.debugLine="FTP_Consulta.List(unaRutaServer) 'ejemplo --> \"./";
+RDebugUtils.currentLine=2752522;
+ //BA.debugLineNum = 2752522;BA.debugLine="FTP_Consulta.List(unaRutaServer) 'ejemplo --> \"./";
 parent.mostCurrent._ftp_consulta.List(processBA,_unarutaserver);
- //BA.debugLineNum = 263;BA.debugLine="Wait For FTP_ListCompleted (ServerPath As String,";
-anywheresoftware.b4a.keywords.Common.WaitFor("ftp_listcompleted", processBA, this, null);
+RDebugUtils.currentLine=2752523;
+ //BA.debugLineNum = 2752523;BA.debugLine="Wait For FTP_ListCompleted (ServerPath As String,";
+anywheresoftware.b4a.keywords.Common.WaitFor("ftp_listcompleted", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "principal", "obtenerlistadearchivos"), null);
 this.state = 13;
 return;
 case 13:
@@ -1012,7 +1242,8 @@ _success = (Boolean) result[1];
 _folders = (anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[]) result[2];
 _files = (anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[]) result[3];
 ;
- //BA.debugLineNum = 264;BA.debugLine="If Success  Then";
+RDebugUtils.currentLine=2752524;
+ //BA.debugLineNum = 2752524;BA.debugLine="If Success  Then";
 if (true) break;
 
 case 5:
@@ -1025,9 +1256,11 @@ this.state = 7;
 case 7:
 //C
 this.state = 8;
- //BA.debugLineNum = 265;BA.debugLine="TotalArchivos = Files.Length";
+RDebugUtils.currentLine=2752525;
+ //BA.debugLineNum = 2752525;BA.debugLine="TotalArchivos = Files.Length";
 _totalarchivos = _files.length;
- //BA.debugLineNum = 267;BA.debugLine="For j = 0 To TotalArchivos-1";
+RDebugUtils.currentLine=2752527;
+ //BA.debugLineNum = 2752527;BA.debugLine="For j = 0 To TotalArchivos-1";
 if (true) break;
 
 case 8:
@@ -1054,7 +1287,8 @@ if (true) break;
 case 10:
 //C
 this.state = 15;
- //BA.debugLineNum = 268;BA.debugLine="ListaCarpetasBase.Add(unaRutaServer & \"/\" & Fil";
+RDebugUtils.currentLine=2752528;
+ //BA.debugLineNum = 2752528;BA.debugLine="ListaCarpetasBase.Add(unaRutaServer & \"/\" & Fil";
 _listacarpetasbase.Add((Object)(_unarutaserver+"/"+_files[_j].getName()));
  if (true) break;
 if (true) break;
@@ -1063,7 +1297,8 @@ case 11:
 //C
 this.state = 12;
 ;
- //BA.debugLineNum = 270;BA.debugLine="FTP_Consulta.CloseNow";
+RDebugUtils.currentLine=2752530;
+ //BA.debugLineNum = 2752530;BA.debugLine="FTP_Consulta.CloseNow";
 parent.mostCurrent._ftp_consulta.CloseNow();
  if (true) break;
 
@@ -1071,19 +1306,39 @@ case 12:
 //C
 this.state = -1;
 ;
- //BA.debugLineNum = 272;BA.debugLine="Return ListaCarpetasBase";
+RDebugUtils.currentLine=2752532;
+ //BA.debugLineNum = 2752532;BA.debugLine="Return ListaCarpetasBase";
 if (true) {
 anywheresoftware.b4a.keywords.Common.ReturnFromResumableSub(this,(Object)(_listacarpetasbase));return;};
- //BA.debugLineNum = 273;BA.debugLine="End Sub";
+RDebugUtils.currentLine=2752533;
+ //BA.debugLineNum = 2752533;BA.debugLine="End Sub";
 if (true) break;
 
             }
         }
     }
 }
-public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 11;BA.debugLine="End Sub";
+public static String  _eventname_result(boolean _result) throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "eventname_result", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "eventname_result", new Object[] {_result}));}
+RDebugUtils.currentLine=2949120;
+ //BA.debugLineNum = 2949120;BA.debugLine="Sub EventName_Result (Result As Boolean)";
+RDebugUtils.currentLine=2949122;
+ //BA.debugLineNum = 2949122;BA.debugLine="End Sub";
+return "";
+}
+public static String  _rbexterna_checkedchange(boolean _checked) throws Exception{
+RDebugUtils.currentModule="principal";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "rbexterna_checkedchange", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "rbexterna_checkedchange", new Object[] {_checked}));}
+RDebugUtils.currentLine=10944512;
+ //BA.debugLineNum = 10944512;BA.debugLine="Private Sub RbExterna_CheckedChange(Checked As Boo";
+RDebugUtils.currentLine=10944513;
+ //BA.debugLineNum = 10944513;BA.debugLine="PathSeleccionado = File.DirRootExternal";
+mostCurrent._pathseleccionado = anywheresoftware.b4a.keywords.Common.File.getDirRootExternal();
+RDebugUtils.currentLine=10944514;
+ //BA.debugLineNum = 10944514;BA.debugLine="End Sub";
 return "";
 }
 }

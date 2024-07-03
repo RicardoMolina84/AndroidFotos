@@ -14,7 +14,7 @@ public class servbackup3 extends android.app.Service{
 			android.content.Intent in = new android.content.Intent(context, servbackup3.class);
 			if (intent != null)
 				in.putExtra("b4a_internal_intent", intent);
-            ServiceHelper.StarterHelper.startServiceFromReceiver (context, in, false, BA.class);
+            ServiceHelper.StarterHelper.startServiceFromReceiver (context, in, false, anywheresoftware.b4a.ShellBA.class);
 		}
 
 	}
@@ -29,7 +29,7 @@ public class servbackup3 extends android.app.Service{
         super.onCreate();
         mostCurrent = this;
         if (processBA == null) {
-		    processBA = new BA(this, null, null, "b4a.example", "b4a.example.servbackup3");
+		    processBA = new anywheresoftware.b4a.ShellBA(this, null, null, "b4a.example", "b4a.example.servbackup3");
             if (BA.isShellModeRuntimeCheck(processBA)) {
                 processBA.raiseEvent2(null, true, "SHELL", false);
 		    }
@@ -57,7 +57,10 @@ public class servbackup3 extends android.app.Service{
         }
         processBA.runHook("oncreate", this, null);
         if (false) {
-			ServiceHelper.StarterHelper.runWaitForLayouts();
+			if (ServiceHelper.StarterHelper.runWaitForLayouts() == false) {
+                BA.LogInfo("stopping spontaneous created service");
+                stopSelf();
+            }
 		}
     }
 		@Override
@@ -124,7 +127,8 @@ public class servbackup3 extends android.app.Service{
 @Override
 	public android.os.IBinder onBind(android.content.Intent intent) {
 		return null;
-	}public anywheresoftware.b4a.keywords.Common __c = null;
+	}
+public anywheresoftware.b4a.keywords.Common __c = null;
 public static anywheresoftware.b4a.objects.NotificationWrapper _noti = null;
 public static boolean _esprimeravez = false;
 public static boolean _esprimeravezvueltas = false;
@@ -138,106 +142,144 @@ public b4a.example.datosglobales _datosglobales = null;
 public b4a.example.fxglobales _fxglobales = null;
 public b4a.example.login _login = null;
 public b4a.example.configuracion _configuracion = null;
+public b4a.example.servbackup2 _servbackup2 = null;
 public b4a.example.backup _backup = null;
 public b4a.example.servbackup _servbackup = null;
-public b4a.example.servbackup2 _servbackup2 = null;
 public b4a.example.starter _starter = null;
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _crearnotificacion(int _unidnotificacion,String _titulo,String _mensaje) throws Exception{
- //BA.debugLineNum = 199;BA.debugLine="Private Sub CrearNotificacion(UnIdNotificacion As";
- //BA.debugLineNum = 200;BA.debugLine="noti.Initialize2(noti.IMPORTANCE_LOW) 'para q no";
+RDebugUtils.currentModule="servbackup3";
+if (Debug.shouldDelegate(processBA, "crearnotificacion", false))
+	 {return ((String) Debug.delegate(processBA, "crearnotificacion", new Object[] {_unidnotificacion,_titulo,_mensaje}));}
+RDebugUtils.currentLine=5767168;
+ //BA.debugLineNum = 5767168;BA.debugLine="Private Sub CrearNotificacion(UnIdNotificacion As";
+RDebugUtils.currentLine=5767169;
+ //BA.debugLineNum = 5767169;BA.debugLine="noti.Initialize2(noti.IMPORTANCE_LOW) 'para q no";
 _noti.Initialize2(_noti.IMPORTANCE_LOW);
- //BA.debugLineNum = 202;BA.debugLine="noti.Icon = \"icon\"";
+RDebugUtils.currentLine=5767171;
+ //BA.debugLineNum = 5767171;BA.debugLine="noti.Icon = \"icon\"";
 _noti.setIcon("icon");
- //BA.debugLineNum = 203;BA.debugLine="noti.Vibrate = False";
+RDebugUtils.currentLine=5767172;
+ //BA.debugLineNum = 5767172;BA.debugLine="noti.Vibrate = False";
 _noti.setVibrate(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 204;BA.debugLine="noti.Sound = False";
+RDebugUtils.currentLine=5767173;
+ //BA.debugLineNum = 5767173;BA.debugLine="noti.Sound = False";
 _noti.setSound(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 205;BA.debugLine="noti.Light = False";
+RDebugUtils.currentLine=5767174;
+ //BA.debugLineNum = 5767174;BA.debugLine="noti.Light = False";
 _noti.setLight(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 206;BA.debugLine="noti.SetInfo(Titulo, Mensaje, Principal)";
+RDebugUtils.currentLine=5767175;
+ //BA.debugLineNum = 5767175;BA.debugLine="noti.SetInfo(Titulo, Mensaje, Principal)";
 _noti.SetInfoNew(processBA,BA.ObjectToCharSequence(_titulo),BA.ObjectToCharSequence(_mensaje),(Object)(mostCurrent._principal.getObject()));
- //BA.debugLineNum = 207;BA.debugLine="noti.Notify(UnIdNotificacion)";
+RDebugUtils.currentLine=5767176;
+ //BA.debugLineNum = 5767176;BA.debugLine="noti.Notify(UnIdNotificacion)";
 _noti.Notify(_unidnotificacion);
- //BA.debugLineNum = 208;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5767177;
+ //BA.debugLineNum = 5767177;BA.debugLine="End Sub";
 return "";
 }
 public static String  _ejecutarprograma() throws Exception{
- //BA.debugLineNum = 180;BA.debugLine="Public Sub EjecutarPrograma";
- //BA.debugLineNum = 182;BA.debugLine="Log(\"Se ejecuto el programa!!!\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("67274498","Se ejecuto el programa!!!",0);
- //BA.debugLineNum = 187;BA.debugLine="End Sub";
+RDebugUtils.currentModule="servbackup3";
+if (Debug.shouldDelegate(processBA, "ejecutarprograma", false))
+	 {return ((String) Debug.delegate(processBA, "ejecutarprograma", null));}
+RDebugUtils.currentLine=5701632;
+ //BA.debugLineNum = 5701632;BA.debugLine="Public Sub EjecutarPrograma";
+RDebugUtils.currentLine=5701634;
+ //BA.debugLineNum = 5701634;BA.debugLine="Log(\"Se ejecuto el programa!!!\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("55701634","Se ejecuto el programa!!!",0);
+RDebugUtils.currentLine=5701639;
+ //BA.debugLineNum = 5701639;BA.debugLine="End Sub";
 return "";
 }
 public static String  _eliminarnotificacion(int _unidnotificacion) throws Exception{
- //BA.debugLineNum = 221;BA.debugLine="Private Sub EliminarNotificacion(UnIdNotificacion";
- //BA.debugLineNum = 222;BA.debugLine="noti.Cancel(UnIdNotificacion)";
+RDebugUtils.currentModule="servbackup3";
+if (Debug.shouldDelegate(processBA, "eliminarnotificacion", false))
+	 {return ((String) Debug.delegate(processBA, "eliminarnotificacion", new Object[] {_unidnotificacion}));}
+RDebugUtils.currentLine=5898240;
+ //BA.debugLineNum = 5898240;BA.debugLine="Private Sub EliminarNotificacion(UnIdNotificacion";
+RDebugUtils.currentLine=5898241;
+ //BA.debugLineNum = 5898241;BA.debugLine="noti.Cancel(UnIdNotificacion)";
 _noti.Cancel(_unidnotificacion);
- //BA.debugLineNum = 223;BA.debugLine="StopService(Me)";
+RDebugUtils.currentLine=5898242;
+ //BA.debugLineNum = 5898242;BA.debugLine="StopService(Me)";
 anywheresoftware.b4a.keywords.Common.StopService(processBA,servbackup3.getObject());
- //BA.debugLineNum = 224;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5898243;
+ //BA.debugLineNum = 5898243;BA.debugLine="End Sub";
 return "";
 }
 public static String  _modificarnotificacion(int _unidnotificacion,String _titulo,String _mensaje) throws Exception{
- //BA.debugLineNum = 210;BA.debugLine="Private Sub ModificarNotificacion(UnIdNotificacion";
- //BA.debugLineNum = 211;BA.debugLine="noti.Initialize2(noti.IMPORTANCE_LOW) 'para q no";
+RDebugUtils.currentModule="servbackup3";
+if (Debug.shouldDelegate(processBA, "modificarnotificacion", false))
+	 {return ((String) Debug.delegate(processBA, "modificarnotificacion", new Object[] {_unidnotificacion,_titulo,_mensaje}));}
+RDebugUtils.currentLine=5832704;
+ //BA.debugLineNum = 5832704;BA.debugLine="Private Sub ModificarNotificacion(UnIdNotificacion";
+RDebugUtils.currentLine=5832705;
+ //BA.debugLineNum = 5832705;BA.debugLine="noti.Initialize2(noti.IMPORTANCE_LOW) 'para q no";
 _noti.Initialize2(_noti.IMPORTANCE_LOW);
- //BA.debugLineNum = 213;BA.debugLine="noti.Icon = \"icon\"";
+RDebugUtils.currentLine=5832707;
+ //BA.debugLineNum = 5832707;BA.debugLine="noti.Icon = \"icon\"";
 _noti.setIcon("icon");
- //BA.debugLineNum = 214;BA.debugLine="noti.Vibrate = False";
+RDebugUtils.currentLine=5832708;
+ //BA.debugLineNum = 5832708;BA.debugLine="noti.Vibrate = False";
 _noti.setVibrate(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 215;BA.debugLine="noti.Sound = False";
+RDebugUtils.currentLine=5832709;
+ //BA.debugLineNum = 5832709;BA.debugLine="noti.Sound = False";
 _noti.setSound(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 216;BA.debugLine="noti.Light = False";
+RDebugUtils.currentLine=5832710;
+ //BA.debugLineNum = 5832710;BA.debugLine="noti.Light = False";
 _noti.setLight(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 217;BA.debugLine="noti.SetInfo(Titulo, Mensaje, Principal)";
+RDebugUtils.currentLine=5832711;
+ //BA.debugLineNum = 5832711;BA.debugLine="noti.SetInfo(Titulo, Mensaje, Principal)";
 _noti.SetInfoNew(processBA,BA.ObjectToCharSequence(_titulo),BA.ObjectToCharSequence(_mensaje),(Object)(mostCurrent._principal.getObject()));
- //BA.debugLineNum = 218;BA.debugLine="noti.Notify(UnIdNotificacion)";
+RDebugUtils.currentLine=5832712;
+ //BA.debugLineNum = 5832712;BA.debugLine="noti.Notify(UnIdNotificacion)";
 _noti.Notify(_unidnotificacion);
- //BA.debugLineNum = 219;BA.debugLine="End Sub";
-return "";
-}
-public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 7;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 13;BA.debugLine="Dim noti As Notification";
-_noti = new anywheresoftware.b4a.objects.NotificationWrapper();
- //BA.debugLineNum = 19;BA.debugLine="Dim EsPrimeraVez As Boolean = True";
-_esprimeravez = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 20;BA.debugLine="Dim EsPrimeraVezVueltas As Boolean = True";
-_esprimeravezvueltas = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 23;BA.debugLine="Dim IdNotificacion As Int = 1 ' Identificador úni";
-_idnotificacion = (int) (1);
- //BA.debugLineNum = 24;BA.debugLine="Dim Contador As Int = 0";
-_contador = (int) (0);
- //BA.debugLineNum = 31;BA.debugLine="Dim FtpTest As FTP";
-_ftptest = new anywheresoftware.b4a.net.FTPWrapper();
- //BA.debugLineNum = 32;BA.debugLine="FtpTest.PassiveMode = True";
-_ftptest.setPassiveMode(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 34;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5832713;
+ //BA.debugLineNum = 5832713;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_create() throws Exception{
- //BA.debugLineNum = 36;BA.debugLine="Sub Service_Create";
- //BA.debugLineNum = 38;BA.debugLine="Log(\"ServBackUp3: PASO POR Service_Create\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("67077890","ServBackUp3: PASO POR Service_Create",0);
- //BA.debugLineNum = 40;BA.debugLine="DatosGlobales.EnPrincipal = False";
+RDebugUtils.currentModule="servbackup3";
+if (Debug.shouldDelegate(processBA, "service_create", false))
+	 {return ((String) Debug.delegate(processBA, "service_create", null));}
+RDebugUtils.currentLine=5505024;
+ //BA.debugLineNum = 5505024;BA.debugLine="Sub Service_Create";
+RDebugUtils.currentLine=5505026;
+ //BA.debugLineNum = 5505026;BA.debugLine="Log(\"ServBackUp3: PASO POR Service_Create\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("55505026","ServBackUp3: PASO POR Service_Create",0);
+RDebugUtils.currentLine=5505028;
+ //BA.debugLineNum = 5505028;BA.debugLine="DatosGlobales.EnPrincipal = False";
 mostCurrent._datosglobales._enprincipal /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 41;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
+RDebugUtils.currentLine=5505029;
+ //BA.debugLineNum = 5505029;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
 mostCurrent._service.AutomaticForegroundMode = mostCurrent._service.AUTOMATIC_FOREGROUND_NEVER;
- //BA.debugLineNum = 43;BA.debugLine="CrearNotificacion(IdNotificacion, \"Mensaje del si";
+RDebugUtils.currentLine=5505031;
+ //BA.debugLineNum = 5505031;BA.debugLine="CrearNotificacion(IdNotificacion, \"Mensaje del si";
 _crearnotificacion(_idnotificacion,"Mensaje del sistema","En espera...");
- //BA.debugLineNum = 44;BA.debugLine="Service.StartForeground(IdNotificacion,noti)";
+RDebugUtils.currentLine=5505032;
+ //BA.debugLineNum = 5505032;BA.debugLine="Service.StartForeground(IdNotificacion,noti)";
 mostCurrent._service.StartForeground(_idnotificacion,(android.app.Notification)(_noti.getObject()));
- //BA.debugLineNum = 47;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5505035;
+ //BA.debugLineNum = 5505035;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_destroy() throws Exception{
- //BA.debugLineNum = 173;BA.debugLine="Sub Service_Destroy";
- //BA.debugLineNum = 175;BA.debugLine="Log(\"ServBackUp3: PASO POR Service_Destroy\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("67208962","ServBackUp3: PASO POR Service_Destroy",0);
- //BA.debugLineNum = 177;BA.debugLine="End Sub";
+RDebugUtils.currentModule="servbackup3";
+if (Debug.shouldDelegate(processBA, "service_destroy", false))
+	 {return ((String) Debug.delegate(processBA, "service_destroy", null));}
+RDebugUtils.currentLine=5636096;
+ //BA.debugLineNum = 5636096;BA.debugLine="Sub Service_Destroy";
+RDebugUtils.currentLine=5636098;
+ //BA.debugLineNum = 5636098;BA.debugLine="Log(\"ServBackUp3: PASO POR Service_Destroy\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("55636098","ServBackUp3: PASO POR Service_Destroy",0);
+RDebugUtils.currentLine=5636100;
+ //BA.debugLineNum = 5636100;BA.debugLine="End Sub";
 return "";
 }
 public static void  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{
+RDebugUtils.currentModule="servbackup3";
+if (Debug.shouldDelegate(processBA, "service_start", false))
+	 {Debug.delegate(processBA, "service_start", new Object[] {_startingintent}); return;}
 ResumableSub_Service_Start rsub = new ResumableSub_Service_Start(null,_startingintent);
 rsub.resume(processBA, null);
 }
@@ -253,6 +295,7 @@ boolean _result = false;
 
 @Override
 public void resume(BA ba, Object[] result) throws Exception{
+RDebugUtils.currentModule="servbackup3";
 
     while (true) {
 try {
@@ -264,7 +307,8 @@ return;
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 55;BA.debugLine="Try";
+RDebugUtils.currentLine=5570562;
+ //BA.debugLineNum = 5570562;BA.debugLine="Try";
 if (true) break;
 
 case 1:
@@ -278,9 +322,11 @@ case 3:
 //C
 this.state = 4;
 this.catchState = 66;
- //BA.debugLineNum = 56;BA.debugLine="Log(\"ServBackUp3: PASO POR Service_Start\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143427","ServBackUp3: PASO POR Service_Start",0);
- //BA.debugLineNum = 58;BA.debugLine="If DatosGlobales.EnPrincipal = False Then";
+RDebugUtils.currentLine=5570563;
+ //BA.debugLineNum = 5570563;BA.debugLine="Log(\"ServBackUp3: PASO POR Service_Start\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570563","ServBackUp3: PASO POR Service_Start",0);
+RDebugUtils.currentLine=5570565;
+ //BA.debugLineNum = 5570565;BA.debugLine="If DatosGlobales.EnPrincipal = False Then";
 if (true) break;
 
 case 4:
@@ -293,7 +339,8 @@ this.state = 6;
 case 6:
 //C
 this.state = 7;
- //BA.debugLineNum = 60;BA.debugLine="If DatosGlobales.Configurando = False Then";
+RDebugUtils.currentLine=5570567;
+ //BA.debugLineNum = 5570567;BA.debugLine="If DatosGlobales.Configurando = False Then";
 if (true) break;
 
 case 7:
@@ -306,9 +353,11 @@ this.state = 9;
 case 9:
 //C
 this.state = 10;
- //BA.debugLineNum = 62;BA.debugLine="Log(\"Ejecutandose: \" & DatosGlobales.Ejecutand";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143433","Ejecutandose: "+BA.ObjectToString(parent.mostCurrent._datosglobales._ejecutandose /*boolean*/ ),0);
- //BA.debugLineNum = 65;BA.debugLine="If EsPrimeraVez = True Then";
+RDebugUtils.currentLine=5570569;
+ //BA.debugLineNum = 5570569;BA.debugLine="Log(\"Ejecutandose: \" & DatosGlobales.Ejecutand";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570569","Ejecutandose: "+BA.ObjectToString(parent.mostCurrent._datosglobales._ejecutandose /*boolean*/ ),0);
+RDebugUtils.currentLine=5570572;
+ //BA.debugLineNum = 5570572;BA.debugLine="If EsPrimeraVez = True Then";
 if (true) break;
 
 case 10:
@@ -323,9 +372,11 @@ this.state = 34;
 case 12:
 //C
 this.state = 13;
- //BA.debugLineNum = 67;BA.debugLine="StartActivity(Login)";
+RDebugUtils.currentLine=5570574;
+ //BA.debugLineNum = 5570574;BA.debugLine="StartActivity(Login)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(parent.mostCurrent._login.getObject()));
- //BA.debugLineNum = 69;BA.debugLine="If DatosGlobales.LogOk Then";
+RDebugUtils.currentLine=5570576;
+ //BA.debugLineNum = 5570576;BA.debugLine="If DatosGlobales.LogOk Then";
 if (true) break;
 
 case 13:
@@ -338,9 +389,11 @@ this.state = 15;
 case 15:
 //C
 this.state = 16;
- //BA.debugLineNum = 70;BA.debugLine="EsPrimeraVez= False";
+RDebugUtils.currentLine=5570577;
+ //BA.debugLineNum = 5570577;BA.debugLine="EsPrimeraVez= False";
 parent._esprimeravez = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 71;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
+RDebugUtils.currentLine=5570578;
+ //BA.debugLineNum = 5570578;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
 if (true) break;
 
 case 16:
@@ -355,7 +408,8 @@ this.state = 30;
 case 18:
 //C
 this.state = 19;
- //BA.debugLineNum = 72;BA.debugLine="Try";
+RDebugUtils.currentLine=5570579;
+ //BA.debugLineNum = 5570579;BA.debugLine="Try";
 if (true) break;
 
 case 19:
@@ -369,11 +423,13 @@ case 21:
 //C
 this.state = 22;
 this.catchState = 27;
- //BA.debugLineNum = 74;BA.debugLine="Dim rs As ResumableSub = ValidarCnxServido";
+RDebugUtils.currentLine=5570581;
+ //BA.debugLineNum = 5570581;BA.debugLine="Dim rs As ResumableSub = ValidarCnxServido";
 _rs = new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper();
 _rs = _validarcnxservidor(parent.mostCurrent._datosglobales._xml_servidorruta /*String*/ );
- //BA.debugLineNum = 75;BA.debugLine="Wait For(rs) Complete (Result As Boolean)";
-anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, this, _rs);
+RDebugUtils.currentLine=5570582;
+ //BA.debugLineNum = 5570582;BA.debugLine="Wait For(rs) Complete (Result As Boolean)";
+anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "servbackup3", "service_start"), _rs);
 this.state = 68;
 return;
 case 68:
@@ -381,7 +437,8 @@ case 68:
 this.state = 22;
 _result = (Boolean) result[0];
 ;
- //BA.debugLineNum = 76;BA.debugLine="If Result = True Then 'Se pudo conectar al";
+RDebugUtils.currentLine=5570583;
+ //BA.debugLineNum = 5570583;BA.debugLine="If Result = True Then 'Se pudo conectar al";
 if (true) break;
 
 case 22:
@@ -394,13 +451,17 @@ this.state = 24;
 case 24:
 //C
 this.state = 25;
- //BA.debugLineNum = 77;BA.debugLine="Service.StopAutomaticForeground 'Call thi";
+RDebugUtils.currentLine=5570584;
+ //BA.debugLineNum = 5570584;BA.debugLine="Service.StopAutomaticForeground 'Call thi";
 parent.mostCurrent._service.StopAutomaticForeground();
- //BA.debugLineNum = 80;BA.debugLine="StartActivity(Backup)";
+RDebugUtils.currentLine=5570587;
+ //BA.debugLineNum = 5570587;BA.debugLine="StartActivity(Backup)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(parent.mostCurrent._backup.getObject()));
- //BA.debugLineNum = 81;BA.debugLine="Log(\"Paso por aca 'Activity_Resume'\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143452","Paso por aca 'Activity_Resume'",0);
- //BA.debugLineNum = 83;BA.debugLine="ModificarNotificacion(IdNotificacion, \"Fo";
+RDebugUtils.currentLine=5570588;
+ //BA.debugLineNum = 5570588;BA.debugLine="Log(\"Paso por aca 'Activity_Resume'\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570588","Paso por aca 'Activity_Resume'",0);
+RDebugUtils.currentLine=5570590;
+ //BA.debugLineNum = 5570590;BA.debugLine="ModificarNotificacion(IdNotificacion, \"Fo";
 _modificarnotificacion(parent._idnotificacion,"Fotos","Copia en progreso... "+parent.mostCurrent._datosglobales._copiaporcentencurso /*String*/ );
  if (true) break;
 
@@ -414,9 +475,11 @@ case 27:
 //C
 this.state = 28;
 this.catchState = 66;
- //BA.debugLineNum = 92;BA.debugLine="Log(\"Paso por Catch 1 de Service_Start ->";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143463","Paso por Catch 1 de Service_Start -> "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
- //BA.debugLineNum = 93;BA.debugLine="DatosGlobales.Ejecutandose = False";
+RDebugUtils.currentLine=5570599;
+ //BA.debugLineNum = 5570599;BA.debugLine="Log(\"Paso por Catch 1 de Service_Start ->";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570599","Paso por Catch 1 de Service_Start -> "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+RDebugUtils.currentLine=5570600;
+ //BA.debugLineNum = 5570600;BA.debugLine="DatosGlobales.Ejecutandose = False";
 parent.mostCurrent._datosglobales._ejecutandose /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  if (true) break;
 if (true) break;
@@ -431,8 +494,9 @@ this.catchState = 66;
 case 30:
 //C
 this.state = 31;
- //BA.debugLineNum = 96;BA.debugLine="Log(\"No se puede ejecutar BKP porque una co";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143467","No se puede ejecutar BKP porque una copia esta en curso...",0);
+RDebugUtils.currentLine=5570603;
+ //BA.debugLineNum = 5570603;BA.debugLine="Log(\"No se puede ejecutar BKP porque una co";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570603","No se puede ejecutar BKP porque una copia esta en curso...",0);
  if (true) break;
 
 case 31:
@@ -450,7 +514,8 @@ this.state = 51;
 case 34:
 //C
 this.state = 35;
- //BA.debugLineNum = 103;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
+RDebugUtils.currentLine=5570610;
+ //BA.debugLineNum = 5570610;BA.debugLine="If DatosGlobales.Ejecutandose = False Then";
 if (true) break;
 
 case 35:
@@ -465,7 +530,8 @@ this.state = 49;
 case 37:
 //C
 this.state = 38;
- //BA.debugLineNum = 105;BA.debugLine="Try";
+RDebugUtils.currentLine=5570612;
+ //BA.debugLineNum = 5570612;BA.debugLine="Try";
 if (true) break;
 
 case 38:
@@ -479,13 +545,16 @@ case 40:
 //C
 this.state = 41;
 this.catchState = 46;
- //BA.debugLineNum = 106;BA.debugLine="Log(\"Ejecutandose NO por primera vez...\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143477","Ejecutandose NO por primera vez...",0);
- //BA.debugLineNum = 108;BA.debugLine="Dim rs As ResumableSub = ValidarCnxServidor";
+RDebugUtils.currentLine=5570613;
+ //BA.debugLineNum = 5570613;BA.debugLine="Log(\"Ejecutandose NO por primera vez...\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570613","Ejecutandose NO por primera vez...",0);
+RDebugUtils.currentLine=5570615;
+ //BA.debugLineNum = 5570615;BA.debugLine="Dim rs As ResumableSub = ValidarCnxServidor";
 _rs = new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper();
 _rs = _validarcnxservidor(parent.mostCurrent._datosglobales._xml_servidorruta /*String*/ );
- //BA.debugLineNum = 109;BA.debugLine="Wait For(rs) Complete (Result As Boolean)";
-anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, this, _rs);
+RDebugUtils.currentLine=5570616;
+ //BA.debugLineNum = 5570616;BA.debugLine="Wait For(rs) Complete (Result As Boolean)";
+anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "servbackup3", "service_start"), _rs);
 this.state = 69;
 return;
 case 69:
@@ -493,7 +562,8 @@ case 69:
 this.state = 41;
 _result = (Boolean) result[0];
 ;
- //BA.debugLineNum = 110;BA.debugLine="If Result = True Then 'Se pudo conectar al";
+RDebugUtils.currentLine=5570617;
+ //BA.debugLineNum = 5570617;BA.debugLine="If Result = True Then 'Se pudo conectar al";
 if (true) break;
 
 case 41:
@@ -506,11 +576,14 @@ this.state = 43;
 case 43:
 //C
 this.state = 44;
- //BA.debugLineNum = 111;BA.debugLine="Service.StopAutomaticForeground 'Call this";
+RDebugUtils.currentLine=5570618;
+ //BA.debugLineNum = 5570618;BA.debugLine="Service.StopAutomaticForeground 'Call this";
 parent.mostCurrent._service.StopAutomaticForeground();
- //BA.debugLineNum = 114;BA.debugLine="StartActivity(Backup)";
+RDebugUtils.currentLine=5570621;
+ //BA.debugLineNum = 5570621;BA.debugLine="StartActivity(Backup)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(parent.mostCurrent._backup.getObject()));
- //BA.debugLineNum = 116;BA.debugLine="ModificarNotificacion(IdNotificacion, \"Fot";
+RDebugUtils.currentLine=5570623;
+ //BA.debugLineNum = 5570623;BA.debugLine="ModificarNotificacion(IdNotificacion, \"Fot";
 _modificarnotificacion(parent._idnotificacion,"Fotos","Copia en progreso... "+parent.mostCurrent._datosglobales._copiaporcentencurso /*String*/ );
  if (true) break;
 
@@ -524,9 +597,11 @@ case 46:
 //C
 this.state = 47;
 this.catchState = 66;
- //BA.debugLineNum = 125;BA.debugLine="Log(\"Paso por Catch 2 de Service_Start -> \"";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143496","Paso por Catch 2 de Service_Start -> "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
- //BA.debugLineNum = 126;BA.debugLine="DatosGlobales.Ejecutandose = False";
+RDebugUtils.currentLine=5570632;
+ //BA.debugLineNum = 5570632;BA.debugLine="Log(\"Paso por Catch 2 de Service_Start -> \"";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570632","Paso por Catch 2 de Service_Start -> "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+RDebugUtils.currentLine=5570633;
+ //BA.debugLineNum = 5570633;BA.debugLine="DatosGlobales.Ejecutandose = False";
 parent.mostCurrent._datosglobales._ejecutandose /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
  if (true) break;
 if (true) break;
@@ -541,8 +616,9 @@ this.catchState = 66;
 case 49:
 //C
 this.state = 50;
- //BA.debugLineNum = 129;BA.debugLine="Log(\"No se puede ejecutar BKP porque una cop";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143500","No se puede ejecutar BKP porque una copia esta en curso...",0);
+RDebugUtils.currentLine=5570636;
+ //BA.debugLineNum = 5570636;BA.debugLine="Log(\"No se puede ejecutar BKP porque una cop";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570636","No se puede ejecutar BKP porque una copia esta en curso...",0);
  if (true) break;
 
 case 50:
@@ -555,11 +631,13 @@ case 51:
 //C
 this.state = 52;
 ;
- //BA.debugLineNum = 136;BA.debugLine="Log(\"Estado al finalizar de 'Ejecutandose': \"";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143507","Estado al finalizar de 'Ejecutandose': "+BA.ObjectToString(parent.mostCurrent._datosglobales._ejecutandose /*boolean*/ ),0);
+RDebugUtils.currentLine=5570643;
+ //BA.debugLineNum = 5570643;BA.debugLine="Log(\"Estado al finalizar de 'Ejecutandose': \"";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570643","Estado al finalizar de 'Ejecutandose': "+BA.ObjectToString(parent.mostCurrent._datosglobales._ejecutandose /*boolean*/ ),0);
  if (true) break;
 ;
- //BA.debugLineNum = 141;BA.debugLine="If DatosGlobales.Ejecutandose = True Then";
+RDebugUtils.currentLine=5570648;
+ //BA.debugLineNum = 5570648;BA.debugLine="If DatosGlobales.Ejecutandose = True Then";
 
 case 52:
 //if
@@ -573,14 +651,16 @@ this.state = 56;
 case 54:
 //C
 this.state = 63;
- //BA.debugLineNum = 143;BA.debugLine="ModificarNotificacion(IdNotificacion, \"Fotos\",";
+RDebugUtils.currentLine=5570650;
+ //BA.debugLineNum = 5570650;BA.debugLine="ModificarNotificacion(IdNotificacion, \"Fotos\",";
 _modificarnotificacion(parent._idnotificacion,"Fotos","Copia en progreso... "+parent.mostCurrent._datosglobales._copiaporcentencurso /*String*/ );
  if (true) break;
 
 case 56:
 //C
 this.state = 57;
- //BA.debugLineNum = 145;BA.debugLine="If DatosGlobales.CopiaPorcentEnCurso = \"100%\"";
+RDebugUtils.currentLine=5570652;
+ //BA.debugLineNum = 5570652;BA.debugLine="If DatosGlobales.CopiaPorcentEnCurso = \"100%\"";
 if (true) break;
 
 case 57:
@@ -595,18 +675,22 @@ this.state = 61;
 case 59:
 //C
 this.state = 62;
- //BA.debugLineNum = 146;BA.debugLine="Log(\"Esperando para hacer copia de seguridad.";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143517","Esperando para hacer copia de seguridad...",0);
- //BA.debugLineNum = 148;BA.debugLine="DatosGlobales.CopiaPorcentEnCurso = \"0%\"";
+RDebugUtils.currentLine=5570653;
+ //BA.debugLineNum = 5570653;BA.debugLine="Log(\"Esperando para hacer copia de seguridad.";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570653","Esperando para hacer copia de seguridad...",0);
+RDebugUtils.currentLine=5570655;
+ //BA.debugLineNum = 5570655;BA.debugLine="DatosGlobales.CopiaPorcentEnCurso = \"0%\"";
 parent.mostCurrent._datosglobales._copiaporcentencurso /*String*/  = "0%";
  if (true) break;
 
 case 61:
 //C
 this.state = 62;
- //BA.debugLineNum = 150;BA.debugLine="Log(\"Esperando para hacer copia de seguridad.";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143521","Esperando para hacer copia de seguridad...",0);
- //BA.debugLineNum = 151;BA.debugLine="CrearNotificacion(IdNotificacion, \"Fotos\",\"Es";
+RDebugUtils.currentLine=5570657;
+ //BA.debugLineNum = 5570657;BA.debugLine="Log(\"Esperando para hacer copia de seguridad.";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570657","Esperando para hacer copia de seguridad...",0);
+RDebugUtils.currentLine=5570658;
+ //BA.debugLineNum = 5570658;BA.debugLine="CrearNotificacion(IdNotificacion, \"Fotos\",\"Es";
 _crearnotificacion(parent._idnotificacion,"Fotos","Esperando para hacer copia de seguridad...");
  if (true) break;
 
@@ -626,7 +710,8 @@ case 64:
 //C
 this.state = 67;
 ;
- //BA.debugLineNum = 158;BA.debugLine="StartServiceAt(Me, DateTime.Now + DatosGlobales.";
+RDebugUtils.currentLine=5570665;
+ //BA.debugLineNum = 5570665;BA.debugLine="StartServiceAt(Me, DateTime.Now + DatosGlobales.";
 anywheresoftware.b4a.keywords.Common.StartServiceAt(processBA,servbackup3.getObject(),(long) (anywheresoftware.b4a.keywords.Common.DateTime.getNow()+parent.mostCurrent._datosglobales._segundos /*int*/ *anywheresoftware.b4a.keywords.Common.DateTime.TicksPerSecond),anywheresoftware.b4a.keywords.Common.True);
  if (true) break;
 
@@ -634,8 +719,9 @@ case 66:
 //C
 this.state = 67;
 this.catchState = 0;
- //BA.debugLineNum = 165;BA.debugLine="Log(\"#ERROR: en Service_Start --> \" & LastExcept";
-anywheresoftware.b4a.keywords.Common.LogImpl("67143536","#ERROR: en Service_Start --> "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
+RDebugUtils.currentLine=5570672;
+ //BA.debugLineNum = 5570672;BA.debugLine="Log(\"#ERROR: en Service_Start --> \" & LastExcept";
+anywheresoftware.b4a.keywords.Common.LogImpl("55570672","#ERROR: en Service_Start --> "+BA.ObjectToString(anywheresoftware.b4a.keywords.Common.LastException(processBA)),0);
  if (true) break;
 if (true) break;
 
@@ -644,7 +730,8 @@ case 67:
 this.state = -1;
 this.catchState = 0;
 ;
- //BA.debugLineNum = 171;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5570678;
+ //BA.debugLineNum = 5570678;BA.debugLine="End Sub";
 if (true) break;
 }} 
        catch (Exception e0) {
@@ -658,9 +745,10 @@ processBA.setLastException(e0);}
         }
     }
 }
-public static void  _complete(boolean _result) throws Exception{
-}
 public static anywheresoftware.b4a.keywords.Common.ResumableSubWrapper  _validarcnxservidor(String _unaruta) throws Exception{
+RDebugUtils.currentModule="servbackup3";
+if (Debug.shouldDelegate(processBA, "validarcnxservidor", false))
+	 {return ((anywheresoftware.b4a.keywords.Common.ResumableSubWrapper) Debug.delegate(processBA, "validarcnxservidor", new Object[] {_unaruta}));}
 ResumableSub_ValidarCnxServidor rsub = new ResumableSub_ValidarCnxServidor(null,_unaruta);
 rsub.resume(processBA, null);
 return (anywheresoftware.b4a.keywords.Common.ResumableSubWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.keywords.Common.ResumableSubWrapper(), rsub);
@@ -681,6 +769,7 @@ int _totalcarpetas = 0;
 
 @Override
 public void resume(BA ba, Object[] result) throws Exception{
+RDebugUtils.currentModule="servbackup3";
 
     while (true) {
         switch (state) {
@@ -690,18 +779,24 @@ anywheresoftware.b4a.keywords.Common.ReturnFromResumableSub(this,null);return;}
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 235;BA.debugLine="Log(\"### Inicia validacion de conexion al servido";
-anywheresoftware.b4a.keywords.Common.LogImpl("67536642","### Inicia validacion de conexion al servidor ### - "+_unaruta,0);
- //BA.debugLineNum = 237;BA.debugLine="FtpTest.Initialize(\"FTP\",DatosGlobales.ServidorIp";
+RDebugUtils.currentLine=5963778;
+ //BA.debugLineNum = 5963778;BA.debugLine="Log(\"### Inicia validacion de conexion al servido";
+anywheresoftware.b4a.keywords.Common.LogImpl("55963778","### Inicia validacion de conexion al servidor ### - "+_unaruta,0);
+RDebugUtils.currentLine=5963780;
+ //BA.debugLineNum = 5963780;BA.debugLine="FtpTest.Initialize(\"FTP\",DatosGlobales.ServidorIp";
 parent._ftptest.Initialize(processBA,"FTP",parent.mostCurrent._datosglobales._servidorip /*String*/ ,(int)(Double.parseDouble(parent.mostCurrent._datosglobales._servidorpuerto /*String*/ )),parent.mostCurrent._datosglobales._servidorusuario /*String*/ ,parent.mostCurrent._datosglobales._servidorclave /*String*/ );
- //BA.debugLineNum = 238;BA.debugLine="FtpTest.PassiveMode = True";
+RDebugUtils.currentLine=5963781;
+ //BA.debugLineNum = 5963781;BA.debugLine="FtpTest.PassiveMode = True";
 parent._ftptest.setPassiveMode(anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 240;BA.debugLine="Dim Resu As Boolean = False";
+RDebugUtils.currentLine=5963783;
+ //BA.debugLineNum = 5963783;BA.debugLine="Dim Resu As Boolean = False";
 _resu = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 242;BA.debugLine="FtpTest.List(unaRuta)";
+RDebugUtils.currentLine=5963785;
+ //BA.debugLineNum = 5963785;BA.debugLine="FtpTest.List(unaRuta)";
 parent._ftptest.List(processBA,_unaruta);
- //BA.debugLineNum = 243;BA.debugLine="Wait For FTP_ListCompleted (ServerPath As String,";
-anywheresoftware.b4a.keywords.Common.WaitFor("ftp_listcompleted", processBA, this, null);
+RDebugUtils.currentLine=5963786;
+ //BA.debugLineNum = 5963786;BA.debugLine="Wait For FTP_ListCompleted (ServerPath As String,";
+anywheresoftware.b4a.keywords.Common.WaitFor("ftp_listcompleted", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "servbackup3", "validarcnxservidor"), null);
 this.state = 5;
 return;
 case 5:
@@ -712,11 +807,14 @@ _success = (Boolean) result[1];
 _folders = (anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[]) result[2];
 _files = (anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[]) result[3];
 ;
- //BA.debugLineNum = 244;BA.debugLine="Dim TotalCarpetas As Int = Folders.Length";
+RDebugUtils.currentLine=5963787;
+ //BA.debugLineNum = 5963787;BA.debugLine="Dim TotalCarpetas As Int = Folders.Length";
 _totalcarpetas = _folders.length;
- //BA.debugLineNum = 246;BA.debugLine="Log(\"Cantidad de carpetas leidas: \" & TotalCarpet";
-anywheresoftware.b4a.keywords.Common.LogImpl("67536653","Cantidad de carpetas leidas: "+BA.NumberToString(_totalcarpetas)+" ---> "+BA.ObjectToString(_success),0);
- //BA.debugLineNum = 248;BA.debugLine="If Success = True  Then";
+RDebugUtils.currentLine=5963789;
+ //BA.debugLineNum = 5963789;BA.debugLine="Log(\"Cantidad de carpetas leidas: \" & TotalCarpet";
+anywheresoftware.b4a.keywords.Common.LogImpl("55963789","Cantidad de carpetas leidas: "+BA.NumberToString(_totalcarpetas)+" ---> "+BA.ObjectToString(_success),0);
+RDebugUtils.currentLine=5963791;
+ //BA.debugLineNum = 5963791;BA.debugLine="If Success = True  Then";
 if (true) break;
 
 case 1:
@@ -729,7 +827,8 @@ this.state = 3;
 case 3:
 //C
 this.state = 4;
- //BA.debugLineNum = 249;BA.debugLine="Resu = True";
+RDebugUtils.currentLine=5963792;
+ //BA.debugLineNum = 5963792;BA.debugLine="Resu = True";
 _resu = anywheresoftware.b4a.keywords.Common.True;
  if (true) break;
 
@@ -737,18 +836,19 @@ case 4:
 //C
 this.state = -1;
 ;
- //BA.debugLineNum = 253;BA.debugLine="Log(\"### Fin de validacion de conexion al servido";
-anywheresoftware.b4a.keywords.Common.LogImpl("67536660","### Fin de validacion de conexion al servidor ###",0);
- //BA.debugLineNum = 255;BA.debugLine="Return Resu";
+RDebugUtils.currentLine=5963796;
+ //BA.debugLineNum = 5963796;BA.debugLine="Log(\"### Fin de validacion de conexion al servido";
+anywheresoftware.b4a.keywords.Common.LogImpl("55963796","### Fin de validacion de conexion al servidor ###",0);
+RDebugUtils.currentLine=5963798;
+ //BA.debugLineNum = 5963798;BA.debugLine="Return Resu";
 if (true) {
 anywheresoftware.b4a.keywords.Common.ReturnFromResumableSub(this,(Object)(_resu));return;};
- //BA.debugLineNum = 256;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5963799;
+ //BA.debugLineNum = 5963799;BA.debugLine="End Sub";
 if (true) break;
 
             }
         }
     }
-}
-public static void  _ftp_listcompleted(String _serverpath,boolean _success,anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[] _folders,anywheresoftware.b4a.net.FTPWrapper.FTPFileWrapper[] _files) throws Exception{
 }
 }

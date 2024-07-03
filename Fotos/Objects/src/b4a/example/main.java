@@ -34,7 +34,7 @@ public class main extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new BA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.main");
+			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.main");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -335,6 +335,103 @@ public class main extends Activity implements B4AActivity{
             
     }
 
+
+
+public static void initializeProcessGlobals() {
+    
+    if (main.processGlobalsRun == false) {
+	    main.processGlobalsRun = true;
+		try {
+		        		
+        } catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+    }
+}
+public static boolean isAnyActivityVisible() {
+    boolean vis = false;
+vis = vis | (main.mostCurrent != null);
+vis = vis | (principal.mostCurrent != null);
+vis = vis | (login.mostCurrent != null);
+vis = vis | (configuracion.mostCurrent != null);
+vis = vis | (backup.mostCurrent != null);
+return vis;}
+
+private static BA killProgramHelper(BA ba) {
+    if (ba == null)
+        return null;
+    anywheresoftware.b4a.BA.SharedProcessBA sharedProcessBA = ba.sharedProcessBA;
+    if (sharedProcessBA == null || sharedProcessBA.activityBA == null)
+        return null;
+    return sharedProcessBA.activityBA.get();
+}
+public static void killProgram() {
+     {
+            Activity __a = null;
+            if (main.previousOne != null) {
+				__a = main.previousOne.get();
+			}
+            else {
+                BA ba = killProgramHelper(main.mostCurrent == null ? null : main.mostCurrent.processBA);
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, servbackup4.class));
+ {
+            Activity __a = null;
+            if (principal.previousOne != null) {
+				__a = principal.previousOne.get();
+			}
+            else {
+                BA ba = killProgramHelper(principal.mostCurrent == null ? null : principal.mostCurrent.processBA);
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+ {
+            Activity __a = null;
+            if (login.previousOne != null) {
+				__a = login.previousOne.get();
+			}
+            else {
+                BA ba = killProgramHelper(login.mostCurrent == null ? null : login.mostCurrent.processBA);
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+ {
+            Activity __a = null;
+            if (configuracion.previousOne != null) {
+				__a = configuracion.previousOne.get();
+			}
+            else {
+                BA ba = killProgramHelper(configuracion.mostCurrent == null ? null : configuracion.mostCurrent.processBA);
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, servbackup3.class));
+BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, servbackup2.class));
+ {
+            Activity __a = null;
+            if (backup.previousOne != null) {
+				__a = backup.previousOne.get();
+			}
+            else {
+                BA ba = killProgramHelper(backup.mostCurrent == null ? null : backup.mostCurrent.processBA);
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, servbackup.class));
+BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, starter.class));
+}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public anywheresoftware.b4a.objects.ButtonWrapper _prueba_button1 = null;
 public anywheresoftware.b4a.objects.ButtonWrapper _btnconfiguracion = null;
@@ -344,123 +441,126 @@ public b4a.example.datosglobales _datosglobales = null;
 public b4a.example.fxglobales _fxglobales = null;
 public b4a.example.login _login = null;
 public b4a.example.configuracion _configuracion = null;
+public b4a.example.servbackup3 _servbackup3 = null;
+public b4a.example.servbackup2 _servbackup2 = null;
 public b4a.example.backup _backup = null;
 public b4a.example.servbackup _servbackup = null;
-public b4a.example.servbackup2 _servbackup2 = null;
-public b4a.example.servbackup3 _servbackup3 = null;
 public b4a.example.starter _starter = null;
-
-public static boolean isAnyActivityVisible() {
-    boolean vis = false;
-vis = vis | (main.mostCurrent != null);
-vis = vis | (principal.mostCurrent != null);
-vis = vis | (login.mostCurrent != null);
-vis = vis | (configuracion.mostCurrent != null);
-vis = vis | (backup.mostCurrent != null);
-return vis;}
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
- //BA.debugLineNum = 43;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 45;BA.debugLine="Log(\"MAIN: PASO POR Activity_Create\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("6131074","MAIN: PASO POR Activity_Create",0);
- //BA.debugLineNum = 47;BA.debugLine="Activity.Color = Colors.Transparent";
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
+RDebugUtils.currentLine=131072;
+ //BA.debugLineNum = 131072;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=131076;
+ //BA.debugLineNum = 131076;BA.debugLine="StartActivity(Principal)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._principal.getObject()));
+RDebugUtils.currentLine=131077;
+ //BA.debugLineNum = 131077;BA.debugLine="Activity.Finish";
+mostCurrent._activity.Finish();
+RDebugUtils.currentLine=131081;
+ //BA.debugLineNum = 131081;BA.debugLine="Log(\"MAIN: PASO POR Activity_Create\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("5131081","MAIN: PASO POR Activity_Create",0);
+RDebugUtils.currentLine=131083;
+ //BA.debugLineNum = 131083;BA.debugLine="Activity.Color = Colors.Transparent";
 mostCurrent._activity.setColor(anywheresoftware.b4a.keywords.Common.Colors.Transparent);
- //BA.debugLineNum = 48;BA.debugLine="DatosGlobales.Configurando = False";
+RDebugUtils.currentLine=131084;
+ //BA.debugLineNum = 131084;BA.debugLine="DatosGlobales.Configurando = False";
 mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 49;BA.debugLine="DatosGlobales.ForzarEjecucion = False";
+RDebugUtils.currentLine=131085;
+ //BA.debugLineNum = 131085;BA.debugLine="DatosGlobales.ForzarEjecucion = False";
 mostCurrent._datosglobales._forzarejecucion /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 54;BA.debugLine="StartActivity(Login)";
+RDebugUtils.currentLine=131090;
+ //BA.debugLineNum = 131090;BA.debugLine="StartActivity(Login)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._login.getObject()));
- //BA.debugLineNum = 56;BA.debugLine="If DatosGlobales.LogOk = True Then";
+RDebugUtils.currentLine=131092;
+ //BA.debugLineNum = 131092;BA.debugLine="If DatosGlobales.LogOk = True Then";
 if (mostCurrent._datosglobales._logok /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 57;BA.debugLine="DatosGlobales.Ejecutandose = False";
+RDebugUtils.currentLine=131093;
+ //BA.debugLineNum = 131093;BA.debugLine="DatosGlobales.Ejecutandose = False";
 mostCurrent._datosglobales._ejecutandose /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 60;BA.debugLine="StartService(ServBackUp4)";
+RDebugUtils.currentLine=131096;
+ //BA.debugLineNum = 131096;BA.debugLine="StartService(ServBackUp4)";
 anywheresoftware.b4a.keywords.Common.StartService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
- //BA.debugLineNum = 62;BA.debugLine="Activity.Finish";
+RDebugUtils.currentLine=131098;
+ //BA.debugLineNum = 131098;BA.debugLine="Activity.Finish";
 mostCurrent._activity.Finish();
  }else {
- //BA.debugLineNum = 66;BA.debugLine="StartActivity(Login)";
+RDebugUtils.currentLine=131102;
+ //BA.debugLineNum = 131102;BA.debugLine="StartActivity(Login)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._login.getObject()));
  };
- //BA.debugLineNum = 70;BA.debugLine="End Sub";
+RDebugUtils.currentLine=131106;
+ //BA.debugLineNum = 131106;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 95;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 97;BA.debugLine="Log(\"MAIN: PASO POR Activity_Pause\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("6262146","MAIN: PASO POR Activity_Pause",0);
- //BA.debugLineNum = 99;BA.debugLine="End Sub";
+RDebugUtils.currentModule="main";
+RDebugUtils.currentLine=262144;
+ //BA.debugLineNum = 262144;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+RDebugUtils.currentLine=262146;
+ //BA.debugLineNum = 262146;BA.debugLine="Log(\"MAIN: PASO POR Activity_Pause\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("5262146","MAIN: PASO POR Activity_Pause",0);
+RDebugUtils.currentLine=262148;
+ //BA.debugLineNum = 262148;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 72;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 74;BA.debugLine="Log(\"MAIN: PASO POR Activity_Resume donde volvi a";
-anywheresoftware.b4a.keywords.Common.LogImpl("6196610","MAIN: PASO POR Activity_Resume donde volvi a poner un nuevo ejecutar",0);
- //BA.debugLineNum = 76;BA.debugLine="If DatosGlobales.LogOk = True Then";
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
+RDebugUtils.currentLine=196608;
+ //BA.debugLineNum = 196608;BA.debugLine="Sub Activity_Resume";
+RDebugUtils.currentLine=196610;
+ //BA.debugLineNum = 196610;BA.debugLine="Log(\"MAIN: PASO POR Activity_Resume donde volvi a";
+anywheresoftware.b4a.keywords.Common.LogImpl("5196610","MAIN: PASO POR Activity_Resume donde volvi a poner un nuevo ejecutar",0);
+RDebugUtils.currentLine=196612;
+ //BA.debugLineNum = 196612;BA.debugLine="If DatosGlobales.LogOk = True Then";
 if (mostCurrent._datosglobales._logok /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 78;BA.debugLine="If DatosGlobales.Ejecutandose = False Then 'le c";
+RDebugUtils.currentLine=196614;
+ //BA.debugLineNum = 196614;BA.debugLine="If DatosGlobales.Ejecutandose = False Then 'le c";
 if (mostCurrent._datosglobales._ejecutandose /*boolean*/ ==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 80;BA.debugLine="StartService(ServBackUp4)";
+RDebugUtils.currentLine=196616;
+ //BA.debugLineNum = 196616;BA.debugLine="StartService(ServBackUp4)";
 anywheresoftware.b4a.keywords.Common.StartService(processBA,(Object)(mostCurrent._servbackup4.getObject()));
- //BA.debugLineNum = 82;BA.debugLine="Activity.Finish";
+RDebugUtils.currentLine=196618;
+ //BA.debugLineNum = 196618;BA.debugLine="Activity.Finish";
 mostCurrent._activity.Finish();
  };
  }else {
- //BA.debugLineNum = 89;BA.debugLine="StartActivity(Login)";
+RDebugUtils.currentLine=196625;
+ //BA.debugLineNum = 196625;BA.debugLine="StartActivity(Login)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._login.getObject()));
  };
- //BA.debugLineNum = 93;BA.debugLine="End Sub";
+RDebugUtils.currentLine=196629;
+ //BA.debugLineNum = 196629;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btnconfiguracion_click() throws Exception{
- //BA.debugLineNum = 115;BA.debugLine="Private Sub BtnConfiguracion_Click";
- //BA.debugLineNum = 116;BA.debugLine="StartActivity(Configuracion)";
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnconfiguracion_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnconfiguracion_click", null));}
+RDebugUtils.currentLine=393216;
+ //BA.debugLineNum = 393216;BA.debugLine="Private Sub BtnConfiguracion_Click";
+RDebugUtils.currentLine=393217;
+ //BA.debugLineNum = 393217;BA.debugLine="StartActivity(Configuracion)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._configuracion.getObject()));
- //BA.debugLineNum = 117;BA.debugLine="End Sub";
-return "";
-}
-public static String  _globals() throws Exception{
- //BA.debugLineNum = 32;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 37;BA.debugLine="Private Prueba_Button1 As Button";
-mostCurrent._prueba_button1 = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 38;BA.debugLine="Private BtnConfiguracion As Button";
-mostCurrent._btnconfiguracion = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 39;BA.debugLine="End Sub";
-return "";
-}
-
-public static void initializeProcessGlobals() {
-    
-    if (main.processGlobalsRun == false) {
-	    main.processGlobalsRun = true;
-		try {
-		        main._process_globals();
-servbackup4._process_globals();
-principal._process_globals();
-datosglobales._process_globals();
-fxglobales._process_globals();
-login._process_globals();
-configuracion._process_globals();
-backup._process_globals();
-servbackup._process_globals();
-servbackup2._process_globals();
-servbackup3._process_globals();
-starter._process_globals();
-		
-        } catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-    }
-}public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 21;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 26;BA.debugLine="End Sub";
+RDebugUtils.currentLine=393218;
+ //BA.debugLineNum = 393218;BA.debugLine="End Sub";
 return "";
 }
 public static String  _prueba_button1_click() throws Exception{
- //BA.debugLineNum = 109;BA.debugLine="Private Sub Prueba_Button1_Click";
- //BA.debugLineNum = 111;BA.debugLine="StartActivity(Backup)";
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "prueba_button1_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "prueba_button1_click", null));}
+RDebugUtils.currentLine=327680;
+ //BA.debugLineNum = 327680;BA.debugLine="Private Sub Prueba_Button1_Click";
+RDebugUtils.currentLine=327682;
+ //BA.debugLineNum = 327682;BA.debugLine="StartActivity(Backup)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._backup.getObject()));
- //BA.debugLineNum = 113;BA.debugLine="End Sub";
+RDebugUtils.currentLine=327684;
+ //BA.debugLineNum = 327684;BA.debugLine="End Sub";
 return "";
 }
 }

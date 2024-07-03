@@ -34,7 +34,7 @@ public class backup extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new BA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.backup");
+			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.backup");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -335,6 +335,15 @@ public class backup extends Activity implements B4AActivity{
             
     }
 
+
+
+public static void initializeProcessGlobals() {
+             try {
+                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public static int _cantidadtotal = 0;
 public b4a.example.main _main = null;
@@ -344,28 +353,9 @@ public b4a.example.datosglobales _datosglobales = null;
 public b4a.example.fxglobales _fxglobales = null;
 public b4a.example.login _login = null;
 public b4a.example.configuracion _configuracion = null;
-public b4a.example.servbackup _servbackup = null;
-public b4a.example.servbackup2 _servbackup2 = null;
 public b4a.example.servbackup3 _servbackup3 = null;
+public b4a.example.servbackup2 _servbackup2 = null;
+public b4a.example.servbackup _servbackup = null;
 public b4a.example.starter _starter = null;
-
-public static void initializeProcessGlobals() {
-             try {
-                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-}
-public static String  _globals() throws Exception{
- //BA.debugLineNum = 54;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 80;BA.debugLine="End Sub";
-return "";
-}
-public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 9;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 24;BA.debugLine="Dim CantidadTotal As Int = 0";
-_cantidadtotal = (int) (0);
- //BA.debugLineNum = 49;BA.debugLine="End Sub";
-return "";
-}
+public b4a.example.httputils2service _httputils2service = null;
 }

@@ -35,6 +35,15 @@ Sub Globals
 	Dim FTP_Consulta As FTP
 	Dim FTP_Consulta_Carp_Int As FTP
 	
+	
+	Dim fd As FileDialog
+	Dim PathSeleccionado As String
+	
+	
+	
+	Private BtnSelCarpeta As Button
+	Private RbInterna As RadioButton
+	Private RbExterna As RadioButton
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -51,6 +60,10 @@ Sub Activity_Create(FirstTime As Boolean)
 
 
 	'Activity.LoadLayout("principal")
+
+	
+	RbInterna.Checked = True
+	RbInterna_CheckedChange(True)
 
 End Sub
 
@@ -322,3 +335,53 @@ End Sub
 #End Region
 
 
+
+
+Private Sub BtnSelCarpeta_Click
+	
+	fd.ShowOnlyFolders = True
+	'fd.Initialize(Activity, "Select Folder")
+	fd.FilePath = PathSeleccionado 'File.DirInternal 'File.DirRootExternal ' Empieza en el directorio raíz del almacenamiento externo
+	fd.FileFilter = Null ' No filtrar ningún archivo específico
+	
+	Dim sf As Object = fd.ShowAsync("Seleccioná una ruta", "Si", "Cancelar", "No", Null, False)  '("Select Folder", "OK", "Cancel", "", Null)
+	
+	Wait For (sf) Dialog_Result(Result As Int)
+	
+	Log("Resultado: " & Result)
+	
+	If Result = DialogResponse.POSITIVE Then
+		Log("Selected Folder: " & fd.FilePath)
+	Else
+		Log("No se seleccionó ninguna carpeta.")
+	End If
+	
+	
+	
+End Sub
+
+'Sub fd_Result (Success As Boolean)
+'	PathSeleccionado = fd.FilePath
+'	Log("Selected Folder: " & PathSeleccionado)
+'	If Success Then
+'		PathSeleccionado = fd.ChosenName
+'		Log("Selected Folder: " & PathSeleccionado)
+'		' Aquí puedes manejar la carpeta seleccionada, por ejemplo, mostrarla en un Label
+'	Else
+'		ToastMessageShow("No folder selected", False)
+'	End If
+'End Sub
+
+
+Sub EventName_Result (Result As Boolean)
+	
+End Sub
+
+
+Private Sub RbInterna_CheckedChange(Checked As Boolean)
+	PathSeleccionado = File.DirInternal
+End Sub
+
+Private Sub RbExterna_CheckedChange(Checked As Boolean)
+	PathSeleccionado = File.DirRootExternal
+End Sub

@@ -23,17 +23,20 @@ FileGroup8=Default Group
 FileGroup9=Default Group\Imagenes
 Group=Default Group
 Library1=b4xencryption
-Library10=xml2map
-Library11=xui
+Library10=phone
+Library11=reflection
+Library12=stringutils
+Library13=xml2map
+Library14=xui
 Library2=core
-Library3=gps
-Library4=javaobject
-Library5=net
-Library6=phone
-Library7=reflection
-Library8=simplexml2
-Library9=stringutils
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"~\n~	android.permission.WRITE_EXTERNAL_STORAGE="true"/>)~\n~	AddPermission(android.permission.READ_EXTERNAL_STORAGE)~\n~	AddPermission(android.permission.INTERNET)~\n~	AddPermission(android.permission.ACCESS_FINE_LOCATION)~\n~	AddPermission(android.permission.ACCESS_NETWORK_STATE)~\n~	AddPermission(android.permission.ACCESS_WIFI_STATE)~\n~	AddPermission(android.permission.CHANGE_WIFI_STATE)~\n~	AddPermission(android.permission.INTERNET)~\n~	AddPermission(android.permission.ACCESS_COARSE_LOCATION)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetActivityAttribute(Backup, android:theme, @android:style/Theme.Translucent.NoTitleBar)~\n~SetActivityAttribute(Main, android:theme, @android:style/Theme.Translucent.NoTitleBar)~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~~\n~~\n~'End of default text.~\n~
+Library3=dialogs2
+Library4=gps
+Library5=javaobject
+Library6=net
+Library7=network
+Library8=okhttp
+Library9=okhttputils2
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"~\n~	android.permission.WRITE_EXTERNAL_STORAGE="true"/>)~\n~	AddPermission(android.permission.READ_EXTERNAL_STORAGE)~\n~	AddPermission(android.permission.WRITE_EXTERNAL_STORAGE)~\n~	AddPermission(android.permission.INTERNET)~\n~	AddPermission(android.permission.ACCESS_FINE_LOCATION)~\n~	AddPermission(android.permission.ACCESS_NETWORK_STATE)~\n~	AddPermission(android.permission.ACCESS_WIFI_STATE)~\n~	AddPermission(android.permission.CHANGE_WIFI_STATE)~\n~	AddPermission(android.permission.INTERNET)~\n~	AddPermission(android.permission.ACCESS_COARSE_LOCATION)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetActivityAttribute(Backup, android:theme, @android:style/Theme.Translucent.NoTitleBar)~\n~SetActivityAttribute(Main, android:theme, @android:style/Theme.Translucent.NoTitleBar)~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~~\n~~\n~'End of default text.~\n~
 Module1=Backup
 Module10=ServBackUp4
 Module11=Starter
@@ -46,9 +49,9 @@ Module7=ServBackUp
 Module8=ServBackUp2
 Module9=ServBackUp3
 NumberOfFiles=11
-NumberOfLibraries=11
+NumberOfLibraries=14
 NumberOfModules=11
-Version=12.5
+Version=12.8
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Fotos
@@ -93,6 +96,13 @@ End Sub
 
 
 Sub Activity_Create(FirstTime As Boolean)
+	
+	
+	'29/06/2024 ############################## PARA QUE NO ARRANQUE EL APLICATIVO ORIGINAL
+	StartActivity(Principal)
+	Activity.Finish
+	'29/06/2024 ############################## PARA QUE NO ARRANQUE EL APLICATIVO ORIGINAL
+	
 	
 	Log("MAIN: PASO POR Activity_Create")
 	'COMENTADO 31/12/2023

@@ -34,7 +34,7 @@ public class login extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new BA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.login");
+			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.login");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -335,6 +335,15 @@ public class login extends Activity implements B4AActivity{
             
     }
 
+
+
+public static void initializeProcessGlobals() {
+             try {
+                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public static anywheresoftware.b4a.objects.B4XViewWrapper.XUI _xui = null;
 public anywheresoftware.b4a.objects.ButtonWrapper _btningresar = null;
@@ -348,130 +357,153 @@ public b4a.example.principal _principal = null;
 public b4a.example.datosglobales _datosglobales = null;
 public b4a.example.fxglobales _fxglobales = null;
 public b4a.example.configuracion _configuracion = null;
+public b4a.example.servbackup3 _servbackup3 = null;
+public b4a.example.servbackup2 _servbackup2 = null;
 public b4a.example.backup _backup = null;
 public b4a.example.servbackup _servbackup = null;
-public b4a.example.servbackup2 _servbackup2 = null;
-public b4a.example.servbackup3 _servbackup3 = null;
 public b4a.example.starter _starter = null;
-
-public static void initializeProcessGlobals() {
-             try {
-                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-}
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
- //BA.debugLineNum = 34;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 37;BA.debugLine="DatosGlobales.Configurando = True";
+RDebugUtils.currentModule="login";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
+RDebugUtils.currentLine=4259840;
+ //BA.debugLineNum = 4259840;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=4259843;
+ //BA.debugLineNum = 4259843;BA.debugLine="DatosGlobales.Configurando = True";
 mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 38;BA.debugLine="DatosGlobales.LogOk = False";
+RDebugUtils.currentLine=4259844;
+ //BA.debugLineNum = 4259844;BA.debugLine="DatosGlobales.LogOk = False";
 mostCurrent._datosglobales._logok /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 40;BA.debugLine="Log(\"Llega a leer XML?\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("65046278","Llega a leer XML?",0);
- //BA.debugLineNum = 42;BA.debugLine="FxGlobales.LeerXML()";
+RDebugUtils.currentLine=4259846;
+ //BA.debugLineNum = 4259846;BA.debugLine="Log(\"Llega a leer XML?\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("54259846","Llega a leer XML?",0);
+RDebugUtils.currentLine=4259848;
+ //BA.debugLineNum = 4259848;BA.debugLine="FxGlobales.LeerXML()";
 mostCurrent._fxglobales._leerxml /*String*/ (mostCurrent.activityBA);
- //BA.debugLineNum = 44;BA.debugLine="Log(\"Termina de leer XML?\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("65046282","Termina de leer XML?",0);
- //BA.debugLineNum = 47;BA.debugLine="Activity.LoadLayout(\"login\")";
+RDebugUtils.currentLine=4259850;
+ //BA.debugLineNum = 4259850;BA.debugLine="Log(\"Termina de leer XML?\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("54259850","Termina de leer XML?",0);
+RDebugUtils.currentLine=4259853;
+ //BA.debugLineNum = 4259853;BA.debugLine="Activity.LoadLayout(\"login\")";
 mostCurrent._activity.LoadLayout("login",mostCurrent.activityBA);
- //BA.debugLineNum = 51;BA.debugLine="If DatosGlobales.XML_Recordar = 1 Then";
+RDebugUtils.currentLine=4259857;
+ //BA.debugLineNum = 4259857;BA.debugLine="If DatosGlobales.XML_Recordar = 1 Then";
 if ((mostCurrent._datosglobales._xml_recordar /*String*/ ).equals(BA.NumberToString(1))) { 
- //BA.debugLineNum = 53;BA.debugLine="Activity.Color = Colors.Transparent";
+RDebugUtils.currentLine=4259859;
+ //BA.debugLineNum = 4259859;BA.debugLine="Activity.Color = Colors.Transparent";
 mostCurrent._activity.setColor(anywheresoftware.b4a.keywords.Common.Colors.Transparent);
- //BA.debugLineNum = 55;BA.debugLine="Log(\"EN LOGING - USUARIO: \" & DatosGlobales.XML_";
-anywheresoftware.b4a.keywords.Common.LogImpl("65046293","EN LOGING - USUARIO: "+mostCurrent._datosglobales._xml_usuario /*String*/ ,0);
- //BA.debugLineNum = 57;BA.debugLine="EtUsuario.Text = DatosGlobales.XML_Usuario";
+RDebugUtils.currentLine=4259861;
+ //BA.debugLineNum = 4259861;BA.debugLine="Log(\"EN LOGING - USUARIO: \" & DatosGlobales.XML_";
+anywheresoftware.b4a.keywords.Common.LogImpl("54259861","EN LOGING - USUARIO: "+mostCurrent._datosglobales._xml_usuario /*String*/ ,0);
+RDebugUtils.currentLine=4259863;
+ //BA.debugLineNum = 4259863;BA.debugLine="EtUsuario.Text = DatosGlobales.XML_Usuario";
 mostCurrent._etusuario.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_usuario /*String*/ ));
- //BA.debugLineNum = 58;BA.debugLine="EtClave.Text = DatosGlobales.XML_Contraseña";
+RDebugUtils.currentLine=4259864;
+ //BA.debugLineNum = 4259864;BA.debugLine="EtClave.Text = DatosGlobales.XML_Contraseña";
 mostCurrent._etclave.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_contraseña /*String*/ ));
- //BA.debugLineNum = 60;BA.debugLine="BtnIngresar_Click";
+RDebugUtils.currentLine=4259866;
+ //BA.debugLineNum = 4259866;BA.debugLine="BtnIngresar_Click";
 _btningresar_click();
  };
- //BA.debugLineNum = 74;BA.debugLine="End Sub";
-return "";
-}
-public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 90;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 91;BA.debugLine="Log(\"LOGIN: saliendo\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("65177345","LOGIN: saliendo",0);
- //BA.debugLineNum = 92;BA.debugLine="DatosGlobales.Configurando = False";
-mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 93;BA.debugLine="End Sub";
-return "";
-}
-public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 84;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 86;BA.debugLine="DatosGlobales.Configurando = True";
-mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 88;BA.debugLine="End Sub";
-return "";
-}
-public static String  _btnconfig_click() throws Exception{
- //BA.debugLineNum = 161;BA.debugLine="Private Sub BtnConfig_Click";
- //BA.debugLineNum = 162;BA.debugLine="StartActivity(Configuracion)";
-anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._configuracion.getObject()));
- //BA.debugLineNum = 163;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4259880;
+ //BA.debugLineNum = 4259880;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btningresar_click() throws Exception{
+RDebugUtils.currentModule="login";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btningresar_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btningresar_click", null));}
 anywheresoftware.b4j.object.JavaObject _jo = null;
- //BA.debugLineNum = 96;BA.debugLine="Private Sub BtnIngresar_Click";
- //BA.debugLineNum = 110;BA.debugLine="Log(\"Usuario: \" & DatosGlobales.XML_Usuario & \" -";
-anywheresoftware.b4a.keywords.Common.LogImpl("65242894","Usuario: "+mostCurrent._datosglobales._xml_usuario /*String*/ +" - CLAVE: "+mostCurrent._datosglobales._xml_contraseña /*String*/ ,0);
- //BA.debugLineNum = 113;BA.debugLine="If EtUsuario.Text = DatosGlobales.XML_Usuario The";
+RDebugUtils.currentLine=4456448;
+ //BA.debugLineNum = 4456448;BA.debugLine="Private Sub BtnIngresar_Click";
+RDebugUtils.currentLine=4456462;
+ //BA.debugLineNum = 4456462;BA.debugLine="Log(\"Usuario: \" & DatosGlobales.XML_Usuario & \" -";
+anywheresoftware.b4a.keywords.Common.LogImpl("54456462","Usuario: "+mostCurrent._datosglobales._xml_usuario /*String*/ +" - CLAVE: "+mostCurrent._datosglobales._xml_contraseña /*String*/ ,0);
+RDebugUtils.currentLine=4456465;
+ //BA.debugLineNum = 4456465;BA.debugLine="If EtUsuario.Text = DatosGlobales.XML_Usuario The";
 if ((mostCurrent._etusuario.getText()).equals(mostCurrent._datosglobales._xml_usuario /*String*/ )) { 
- //BA.debugLineNum = 114;BA.debugLine="If EtClave.Text = DatosGlobales.XML_Contraseña T";
+RDebugUtils.currentLine=4456466;
+ //BA.debugLineNum = 4456466;BA.debugLine="If EtClave.Text = DatosGlobales.XML_Contraseña T";
 if ((mostCurrent._etclave.getText()).equals(mostCurrent._datosglobales._xml_contraseña /*String*/ )) { 
- //BA.debugLineNum = 115;BA.debugLine="DatosGlobales.LogOk = True";
+RDebugUtils.currentLine=4456467;
+ //BA.debugLineNum = 4456467;BA.debugLine="DatosGlobales.LogOk = True";
 mostCurrent._datosglobales._logok /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 116;BA.debugLine="Activity.Finish";
+RDebugUtils.currentLine=4456468;
+ //BA.debugLineNum = 4456468;BA.debugLine="Activity.Finish";
 mostCurrent._activity.Finish();
  }else {
- //BA.debugLineNum = 118;BA.debugLine="intentos = intentos +1";
+RDebugUtils.currentLine=4456470;
+ //BA.debugLineNum = 4456470;BA.debugLine="intentos = intentos +1";
 _intentos = (int) (_intentos+1);
- //BA.debugLineNum = 120;BA.debugLine="If intentos <= 3 Then";
+RDebugUtils.currentLine=4456472;
+ //BA.debugLineNum = 4456472;BA.debugLine="If intentos <= 3 Then";
 if (_intentos<=3) { 
- //BA.debugLineNum = 121;BA.debugLine="Msgbox(\"#ERROR: clave incorrecta.\",\"Mensaje de";
+RDebugUtils.currentLine=4456473;
+ //BA.debugLineNum = 4456473;BA.debugLine="Msgbox(\"#ERROR: clave incorrecta.\",\"Mensaje de";
 anywheresoftware.b4a.keywords.Common.Msgbox(BA.ObjectToCharSequence("#ERROR: clave incorrecta."),BA.ObjectToCharSequence("Mensaje del sistema"),mostCurrent.activityBA);
  }else {
- //BA.debugLineNum = 123;BA.debugLine="Msgbox(\"#ERROR: Demasiados intentos incorrecto";
+RDebugUtils.currentLine=4456475;
+ //BA.debugLineNum = 4456475;BA.debugLine="Msgbox(\"#ERROR: Demasiados intentos incorrecto";
 anywheresoftware.b4a.keywords.Common.Msgbox(BA.ObjectToCharSequence("#ERROR: Demasiados intentos incorrectos. El programa se cerrará."),BA.ObjectToCharSequence("Mensaje del sistema"),mostCurrent.activityBA);
- //BA.debugLineNum = 126;BA.debugLine="Dim jo As JavaObject";
+RDebugUtils.currentLine=4456478;
+ //BA.debugLineNum = 4456478;BA.debugLine="Dim jo As JavaObject";
 _jo = new anywheresoftware.b4j.object.JavaObject();
- //BA.debugLineNum = 127;BA.debugLine="jo.InitializeContext";
+RDebugUtils.currentLine=4456479;
+ //BA.debugLineNum = 4456479;BA.debugLine="jo.InitializeContext";
 _jo.InitializeContext(processBA);
- //BA.debugLineNum = 128;BA.debugLine="jo.RunMethod(\"finishAffinity\",Null)";
+RDebugUtils.currentLine=4456480;
+ //BA.debugLineNum = 4456480;BA.debugLine="jo.RunMethod(\"finishAffinity\",Null)";
 _jo.RunMethod("finishAffinity",(Object[])(anywheresoftware.b4a.keywords.Common.Null));
  };
  };
  }else {
- //BA.debugLineNum = 134;BA.debugLine="Msgbox(\"#ERROR: usuario incorrecto.\",\"Mensaje d";
+RDebugUtils.currentLine=4456486;
+ //BA.debugLineNum = 4456486;BA.debugLine="Msgbox(\"#ERROR: usuario incorrecto.\",\"Mensaje d";
 anywheresoftware.b4a.keywords.Common.Msgbox(BA.ObjectToCharSequence("#ERROR: usuario incorrecto."),BA.ObjectToCharSequence("Mensaje del sistema"),mostCurrent.activityBA);
  };
- //BA.debugLineNum = 143;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4456495;
+ //BA.debugLineNum = 4456495;BA.debugLine="End Sub";
 return "";
 }
-public static String  _globals() throws Exception{
- //BA.debugLineNum = 14;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 20;BA.debugLine="Private BtnIngresar As Button";
-mostCurrent._btningresar = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 27;BA.debugLine="Private EtUsuario As EditText";
-mostCurrent._etusuario = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 28;BA.debugLine="Private EtClave As EditText";
-mostCurrent._etclave = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 29;BA.debugLine="Dim intentos As Int = 0";
-_intentos = (int) (0);
- //BA.debugLineNum = 31;BA.debugLine="Private BtnConfig As Button";
-mostCurrent._btnconfig = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 32;BA.debugLine="End Sub";
+public static String  _activity_pause(boolean _userclosed) throws Exception{
+RDebugUtils.currentModule="login";
+RDebugUtils.currentLine=4390912;
+ //BA.debugLineNum = 4390912;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+RDebugUtils.currentLine=4390913;
+ //BA.debugLineNum = 4390913;BA.debugLine="Log(\"LOGIN: saliendo\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("54390913","LOGIN: saliendo",0);
+RDebugUtils.currentLine=4390914;
+ //BA.debugLineNum = 4390914;BA.debugLine="DatosGlobales.Configurando = False";
+mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
+RDebugUtils.currentLine=4390915;
+ //BA.debugLineNum = 4390915;BA.debugLine="End Sub";
 return "";
 }
-public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 10;BA.debugLine="Private xui As XUI";
-_xui = new anywheresoftware.b4a.objects.B4XViewWrapper.XUI();
- //BA.debugLineNum = 12;BA.debugLine="End Sub";
+public static String  _activity_resume() throws Exception{
+RDebugUtils.currentModule="login";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
+RDebugUtils.currentLine=4325376;
+ //BA.debugLineNum = 4325376;BA.debugLine="Sub Activity_Resume";
+RDebugUtils.currentLine=4325378;
+ //BA.debugLineNum = 4325378;BA.debugLine="DatosGlobales.Configurando = True";
+mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
+RDebugUtils.currentLine=4325380;
+ //BA.debugLineNum = 4325380;BA.debugLine="End Sub";
+return "";
+}
+public static String  _btnconfig_click() throws Exception{
+RDebugUtils.currentModule="login";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnconfig_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnconfig_click", null));}
+RDebugUtils.currentLine=4521984;
+ //BA.debugLineNum = 4521984;BA.debugLine="Private Sub BtnConfig_Click";
+RDebugUtils.currentLine=4521985;
+ //BA.debugLineNum = 4521985;BA.debugLine="StartActivity(Configuracion)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._configuracion.getObject()));
+RDebugUtils.currentLine=4521986;
+ //BA.debugLineNum = 4521986;BA.debugLine="End Sub";
 return "";
 }
 }

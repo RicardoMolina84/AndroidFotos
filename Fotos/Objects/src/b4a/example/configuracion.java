@@ -34,7 +34,7 @@ public class configuracion extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new BA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.configuracion");
+			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.configuracion");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -335,6 +335,15 @@ public class configuracion extends Activity implements B4AActivity{
             
     }
 
+
+
+public static void initializeProcessGlobals() {
+             try {
+                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _etfotoscamara = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _etvideoscamara = null;
@@ -366,446 +375,570 @@ public b4a.example.principal _principal = null;
 public b4a.example.datosglobales _datosglobales = null;
 public b4a.example.fxglobales _fxglobales = null;
 public b4a.example.login _login = null;
+public b4a.example.servbackup3 _servbackup3 = null;
+public b4a.example.servbackup2 _servbackup2 = null;
 public b4a.example.backup _backup = null;
 public b4a.example.servbackup _servbackup = null;
-public b4a.example.servbackup2 _servbackup2 = null;
-public b4a.example.servbackup3 _servbackup3 = null;
 public b4a.example.starter _starter = null;
-
-public static void initializeProcessGlobals() {
-             try {
-                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-}
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
- //BA.debugLineNum = 51;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 56;BA.debugLine="DatosGlobales.Configurando = True";
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
+RDebugUtils.currentLine=4718592;
+ //BA.debugLineNum = 4718592;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=4718597;
+ //BA.debugLineNum = 4718597;BA.debugLine="DatosGlobales.Configurando = True";
 mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 58;BA.debugLine="FxGlobales.LeerXML()";
+RDebugUtils.currentLine=4718599;
+ //BA.debugLineNum = 4718599;BA.debugLine="FxGlobales.LeerXML()";
 mostCurrent._fxglobales._leerxml /*String*/ (mostCurrent.activityBA);
- //BA.debugLineNum = 62;BA.debugLine="Activity.LoadLayout(\"configuracion\")";
+RDebugUtils.currentLine=4718603;
+ //BA.debugLineNum = 4718603;BA.debugLine="Activity.LoadLayout(\"configuracion\")";
 mostCurrent._activity.LoadLayout("configuracion",mostCurrent.activityBA);
- //BA.debugLineNum = 63;BA.debugLine="SvConfiguracion.Panel.LoadLayout(\"configuracionCo";
+RDebugUtils.currentLine=4718604;
+ //BA.debugLineNum = 4718604;BA.debugLine="SvConfiguracion.Panel.LoadLayout(\"configuracionCo";
 mostCurrent._svconfiguracion.getPanel().LoadLayout("configuracionContenido",mostCurrent.activityBA);
- //BA.debugLineNum = 64;BA.debugLine="SvConfiguracion.Panel.Width = 320dip";
+RDebugUtils.currentLine=4718605;
+ //BA.debugLineNum = 4718605;BA.debugLine="SvConfiguracion.Panel.Width = 320dip";
 mostCurrent._svconfiguracion.getPanel().setWidth(anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (320)));
- //BA.debugLineNum = 65;BA.debugLine="SvConfiguracion.Panel.Height = 1100dip";
+RDebugUtils.currentLine=4718606;
+ //BA.debugLineNum = 4718606;BA.debugLine="SvConfiguracion.Panel.Height = 1100dip";
 mostCurrent._svconfiguracion.getPanel().setHeight(anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (1100)));
- //BA.debugLineNum = 68;BA.debugLine="EtUsuario.Text = DatosGlobales.XML_Usuario";
+RDebugUtils.currentLine=4718609;
+ //BA.debugLineNum = 4718609;BA.debugLine="EtUsuario.Text = DatosGlobales.XML_Usuario";
 mostCurrent._etusuario.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_usuario /*String*/ ));
- //BA.debugLineNum = 69;BA.debugLine="EtClave.Text = DatosGlobales.XML_Contraseña";
+RDebugUtils.currentLine=4718610;
+ //BA.debugLineNum = 4718610;BA.debugLine="EtClave.Text = DatosGlobales.XML_Contraseña";
 mostCurrent._etclave.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_contraseña /*String*/ ));
- //BA.debugLineNum = 70;BA.debugLine="EtClaveConf.Text = DatosGlobales.XML_Contraseña";
+RDebugUtils.currentLine=4718611;
+ //BA.debugLineNum = 4718611;BA.debugLine="EtClaveConf.Text = DatosGlobales.XML_Contraseña";
 mostCurrent._etclaveconf.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_contraseña /*String*/ ));
- //BA.debugLineNum = 72;BA.debugLine="If DatosGlobales.XML_Recordar = \"1\" Then";
+RDebugUtils.currentLine=4718613;
+ //BA.debugLineNum = 4718613;BA.debugLine="If DatosGlobales.XML_Recordar = \"1\" Then";
 if ((mostCurrent._datosglobales._xml_recordar /*String*/ ).equals("1")) { 
- //BA.debugLineNum = 73;BA.debugLine="CbRecordar.Checked = True";
+RDebugUtils.currentLine=4718614;
+ //BA.debugLineNum = 4718614;BA.debugLine="CbRecordar.Checked = True";
 mostCurrent._cbrecordar.setChecked(anywheresoftware.b4a.keywords.Common.True);
  }else {
- //BA.debugLineNum = 75;BA.debugLine="CbRecordar.Checked = False";
+RDebugUtils.currentLine=4718616;
+ //BA.debugLineNum = 4718616;BA.debugLine="CbRecordar.Checked = False";
 mostCurrent._cbrecordar.setChecked(anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 81;BA.debugLine="EtFotosCamara.Text = DatosGlobales.XML_FotosCamar";
+RDebugUtils.currentLine=4718622;
+ //BA.debugLineNum = 4718622;BA.debugLine="EtFotosCamara.Text = DatosGlobales.XML_FotosCamar";
 mostCurrent._etfotoscamara.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_fotoscamara /*String*/ ));
- //BA.debugLineNum = 82;BA.debugLine="EtVideosCamara.Text = DatosGlobales.XML_VideosCam";
+RDebugUtils.currentLine=4718623;
+ //BA.debugLineNum = 4718623;BA.debugLine="EtVideosCamara.Text = DatosGlobales.XML_VideosCam";
 mostCurrent._etvideoscamara.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_videoscamara /*String*/ ));
- //BA.debugLineNum = 83;BA.debugLine="EtImagenesWhapp.Text = DatosGlobales.XML_Imagenes";
+RDebugUtils.currentLine=4718624;
+ //BA.debugLineNum = 4718624;BA.debugLine="EtImagenesWhapp.Text = DatosGlobales.XML_Imagenes";
 mostCurrent._etimageneswhapp.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_imageneswhatsapp /*String*/ ));
- //BA.debugLineNum = 84;BA.debugLine="EtVideosWhapp.Text = DatosGlobales.XML_VideosWhat";
+RDebugUtils.currentLine=4718625;
+ //BA.debugLineNum = 4718625;BA.debugLine="EtVideosWhapp.Text = DatosGlobales.XML_VideosWhat";
 mostCurrent._etvideoswhapp.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_videoswhatsapp /*String*/ ));
- //BA.debugLineNum = 87;BA.debugLine="If DatosGlobales.XML_ChFotosCamara = \"1\" Then";
+RDebugUtils.currentLine=4718628;
+ //BA.debugLineNum = 4718628;BA.debugLine="If DatosGlobales.XML_ChFotosCamara = \"1\" Then";
 if ((mostCurrent._datosglobales._xml_chfotoscamara /*String*/ ).equals("1")) { 
- //BA.debugLineNum = 88;BA.debugLine="ChFotosCamara.Checked = True";
+RDebugUtils.currentLine=4718629;
+ //BA.debugLineNum = 4718629;BA.debugLine="ChFotosCamara.Checked = True";
 mostCurrent._chfotoscamara.setChecked(anywheresoftware.b4a.keywords.Common.True);
  }else {
- //BA.debugLineNum = 90;BA.debugLine="ChFotosCamara.Checked = False";
+RDebugUtils.currentLine=4718631;
+ //BA.debugLineNum = 4718631;BA.debugLine="ChFotosCamara.Checked = False";
 mostCurrent._chfotoscamara.setChecked(anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 93;BA.debugLine="If DatosGlobales.XML_ChVideosCamara = \"1\" Then";
+RDebugUtils.currentLine=4718634;
+ //BA.debugLineNum = 4718634;BA.debugLine="If DatosGlobales.XML_ChVideosCamara = \"1\" Then";
 if ((mostCurrent._datosglobales._xml_chvideoscamara /*String*/ ).equals("1")) { 
- //BA.debugLineNum = 94;BA.debugLine="ChVideosCamara.Checked = True";
+RDebugUtils.currentLine=4718635;
+ //BA.debugLineNum = 4718635;BA.debugLine="ChVideosCamara.Checked = True";
 mostCurrent._chvideoscamara.setChecked(anywheresoftware.b4a.keywords.Common.True);
  }else {
- //BA.debugLineNum = 96;BA.debugLine="ChVideosCamara.Checked = False";
+RDebugUtils.currentLine=4718637;
+ //BA.debugLineNum = 4718637;BA.debugLine="ChVideosCamara.Checked = False";
 mostCurrent._chvideoscamara.setChecked(anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 99;BA.debugLine="If DatosGlobales.XML_ChImagenesWhatsApp = \"1\" The";
+RDebugUtils.currentLine=4718640;
+ //BA.debugLineNum = 4718640;BA.debugLine="If DatosGlobales.XML_ChImagenesWhatsApp = \"1\" The";
 if ((mostCurrent._datosglobales._xml_chimageneswhatsapp /*String*/ ).equals("1")) { 
- //BA.debugLineNum = 100;BA.debugLine="ChImagenesWhapp.Checked = True";
+RDebugUtils.currentLine=4718641;
+ //BA.debugLineNum = 4718641;BA.debugLine="ChImagenesWhapp.Checked = True";
 mostCurrent._chimageneswhapp.setChecked(anywheresoftware.b4a.keywords.Common.True);
  }else {
- //BA.debugLineNum = 102;BA.debugLine="ChImagenesWhapp.Checked = False";
+RDebugUtils.currentLine=4718643;
+ //BA.debugLineNum = 4718643;BA.debugLine="ChImagenesWhapp.Checked = False";
 mostCurrent._chimageneswhapp.setChecked(anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 105;BA.debugLine="If DatosGlobales.XML_ChVideosWhatsApp = \"1\" Then";
+RDebugUtils.currentLine=4718646;
+ //BA.debugLineNum = 4718646;BA.debugLine="If DatosGlobales.XML_ChVideosWhatsApp = \"1\" Then";
 if ((mostCurrent._datosglobales._xml_chvideoswhatsapp /*String*/ ).equals("1")) { 
- //BA.debugLineNum = 106;BA.debugLine="ChVideosWhapp.Checked = True";
+RDebugUtils.currentLine=4718647;
+ //BA.debugLineNum = 4718647;BA.debugLine="ChVideosWhapp.Checked = True";
 mostCurrent._chvideoswhapp.setChecked(anywheresoftware.b4a.keywords.Common.True);
  }else {
- //BA.debugLineNum = 108;BA.debugLine="ChVideosWhapp.Checked = False";
+RDebugUtils.currentLine=4718649;
+ //BA.debugLineNum = 4718649;BA.debugLine="ChVideosWhapp.Checked = False";
 mostCurrent._chvideoswhapp.setChecked(anywheresoftware.b4a.keywords.Common.False);
  };
- //BA.debugLineNum = 115;BA.debugLine="EtCarpetaServerBkp.Text = DatosGlobales.XML_Usuar";
+RDebugUtils.currentLine=4718656;
+ //BA.debugLineNum = 4718656;BA.debugLine="EtCarpetaServerBkp.Text = DatosGlobales.XML_Usuar";
 mostCurrent._etcarpetaserverbkp.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_usuariorutafotos /*String*/ ));
- //BA.debugLineNum = 118;BA.debugLine="EtServidorRuta.Text = DatosGlobales.XML_ServidorR";
+RDebugUtils.currentLine=4718659;
+ //BA.debugLineNum = 4718659;BA.debugLine="EtServidorRuta.Text = DatosGlobales.XML_ServidorR";
 mostCurrent._etservidorruta.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_servidorruta /*String*/ ));
- //BA.debugLineNum = 119;BA.debugLine="EtServidorIp.Text = DatosGlobales.XML_ServidorIp";
+RDebugUtils.currentLine=4718660;
+ //BA.debugLineNum = 4718660;BA.debugLine="EtServidorIp.Text = DatosGlobales.XML_ServidorIp";
 mostCurrent._etservidorip.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_servidorip /*String*/ ));
- //BA.debugLineNum = 120;BA.debugLine="EtServidorPuerto.Text = DatosGlobales.XML_Servido";
+RDebugUtils.currentLine=4718661;
+ //BA.debugLineNum = 4718661;BA.debugLine="EtServidorPuerto.Text = DatosGlobales.XML_Servido";
 mostCurrent._etservidorpuerto.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_servidorpuerto /*String*/ ));
- //BA.debugLineNum = 121;BA.debugLine="EtServidorUsuario.Text = DatosGlobales.XML_Servid";
+RDebugUtils.currentLine=4718662;
+ //BA.debugLineNum = 4718662;BA.debugLine="EtServidorUsuario.Text = DatosGlobales.XML_Servid";
 mostCurrent._etservidorusuario.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_servidorusuario /*String*/ ));
- //BA.debugLineNum = 122;BA.debugLine="EtServidorClave.Text = DatosGlobales.XML_Servidor";
+RDebugUtils.currentLine=4718663;
+ //BA.debugLineNum = 4718663;BA.debugLine="EtServidorClave.Text = DatosGlobales.XML_Servidor";
 mostCurrent._etservidorclave.setText(BA.ObjectToCharSequence(mostCurrent._datosglobales._xml_servidorclave /*String*/ ));
- //BA.debugLineNum = 125;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4718666;
+ //BA.debugLineNum = 4718666;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 133;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 135;BA.debugLine="DatosGlobales.Configurando = False";
+RDebugUtils.currentModule="configuracion";
+RDebugUtils.currentLine=4849664;
+ //BA.debugLineNum = 4849664;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+RDebugUtils.currentLine=4849666;
+ //BA.debugLineNum = 4849666;BA.debugLine="DatosGlobales.Configurando = False";
 mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 137;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4849668;
+ //BA.debugLineNum = 4849668;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 127;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 129;BA.debugLine="DatosGlobales.Configurando = True";
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
+RDebugUtils.currentLine=4784128;
+ //BA.debugLineNum = 4784128;BA.debugLine="Sub Activity_Resume";
+RDebugUtils.currentLine=4784130;
+ //BA.debugLineNum = 4784130;BA.debugLine="DatosGlobales.Configurando = True";
 mostCurrent._datosglobales._configurando /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 131;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4784132;
+ //BA.debugLineNum = 4784132;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btnguardar_click() throws Exception{
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnguardar_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnguardar_click", null));}
 String _unxml = "";
- //BA.debugLineNum = 144;BA.debugLine="Private Sub BtnGuardar_Click";
- //BA.debugLineNum = 150;BA.debugLine="If EtClave.Text <> \"\" And (EtClave.Text <> EtClav";
+RDebugUtils.currentLine=4915200;
+ //BA.debugLineNum = 4915200;BA.debugLine="Private Sub BtnGuardar_Click";
+RDebugUtils.currentLine=4915206;
+ //BA.debugLineNum = 4915206;BA.debugLine="If EtClave.Text <> \"\" And (EtClave.Text <> EtClav";
 if ((mostCurrent._etclave.getText()).equals("") == false && ((mostCurrent._etclave.getText()).equals(mostCurrent._etclaveconf.getText()) == false)) { 
- //BA.debugLineNum = 151;BA.debugLine="Msgbox(\"#ERROR: la clave ingresada no es correct";
+RDebugUtils.currentLine=4915207;
+ //BA.debugLineNum = 4915207;BA.debugLine="Msgbox(\"#ERROR: la clave ingresada no es correct";
 anywheresoftware.b4a.keywords.Common.Msgbox(BA.ObjectToCharSequence("#ERROR: la clave ingresada no es correcta."),BA.ObjectToCharSequence("Mensaje del sistema"),mostCurrent.activityBA);
- //BA.debugLineNum = 152;BA.debugLine="Return";
+RDebugUtils.currentLine=4915208;
+ //BA.debugLineNum = 4915208;BA.debugLine="Return";
 if (true) return "";
  };
- //BA.debugLineNum = 155;BA.debugLine="Dim unXml As String = CargarElXML";
+RDebugUtils.currentLine=4915211;
+ //BA.debugLineNum = 4915211;BA.debugLine="Dim unXml As String = CargarElXML";
 _unxml = _cargarelxml();
- //BA.debugLineNum = 156;BA.debugLine="File.WriteString(File.DirInternal,\"config.xml\",un";
+RDebugUtils.currentLine=4915212;
+ //BA.debugLineNum = 4915212;BA.debugLine="File.WriteString(File.DirInternal,\"config.xml\",un";
 anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"config.xml",_unxml);
- //BA.debugLineNum = 160;BA.debugLine="FxGlobales.LeerXML()";
+RDebugUtils.currentLine=4915216;
+ //BA.debugLineNum = 4915216;BA.debugLine="FxGlobales.LeerXML()";
 mostCurrent._fxglobales._leerxml /*String*/ (mostCurrent.activityBA);
- //BA.debugLineNum = 163;BA.debugLine="If DatosGlobales.XML_PrimeraVez = \"1\" Then";
+RDebugUtils.currentLine=4915219;
+ //BA.debugLineNum = 4915219;BA.debugLine="If DatosGlobales.XML_PrimeraVez = \"1\" Then";
 if ((mostCurrent._datosglobales._xml_primeravez /*String*/ ).equals("1")) { 
- //BA.debugLineNum = 164;BA.debugLine="File.WriteString(File.DirInternal,\"indicefullbkp";
+RDebugUtils.currentLine=4915220;
+ //BA.debugLineNum = 4915220;BA.debugLine="File.WriteString(File.DirInternal,\"indicefullbkp";
 anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"indicefullbkp.txt","-1");
- //BA.debugLineNum = 165;BA.debugLine="DatosGlobales.IndiceFullBkp = File.ReadString(Fi";
+RDebugUtils.currentLine=4915221;
+ //BA.debugLineNum = 4915221;BA.debugLine="DatosGlobales.IndiceFullBkp = File.ReadString(Fi";
 mostCurrent._datosglobales._indicefullbkp /*int*/  = (int)(Double.parseDouble(anywheresoftware.b4a.keywords.Common.File.ReadString(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"indicefullbkp.txt")));
- //BA.debugLineNum = 167;BA.debugLine="If DatosGlobales.IndiceFullBkp > 0 Then";
+RDebugUtils.currentLine=4915223;
+ //BA.debugLineNum = 4915223;BA.debugLine="If DatosGlobales.IndiceFullBkp > 0 Then";
 if (mostCurrent._datosglobales._indicefullbkp /*int*/ >0) { 
- //BA.debugLineNum = 168;BA.debugLine="DatosGlobales.IndiceFullBkp = DatosGlobales.Ind";
+RDebugUtils.currentLine=4915224;
+ //BA.debugLineNum = 4915224;BA.debugLine="DatosGlobales.IndiceFullBkp = DatosGlobales.Ind";
 mostCurrent._datosglobales._indicefullbkp /*int*/  = (int) (mostCurrent._datosglobales._indicefullbkp /*int*/ -1);
  };
  };
- //BA.debugLineNum = 174;BA.debugLine="Activity.Finish";
+RDebugUtils.currentLine=4915230;
+ //BA.debugLineNum = 4915230;BA.debugLine="Activity.Finish";
 mostCurrent._activity.Finish();
- //BA.debugLineNum = 176;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4915232;
+ //BA.debugLineNum = 4915232;BA.debugLine="End Sub";
 return "";
 }
 public static String  _cargarelxml() throws Exception{
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "cargarelxml", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "cargarelxml", null));}
 String _archivoxml = "";
- //BA.debugLineNum = 241;BA.debugLine="Private Sub CargarElXML As String";
- //BA.debugLineNum = 247;BA.debugLine="If ChFotosCamara.Checked And XML_ChFotosCamara_Hi";
+RDebugUtils.currentLine=5046272;
+ //BA.debugLineNum = 5046272;BA.debugLine="Private Sub CargarElXML As String";
+RDebugUtils.currentLine=5046278;
+ //BA.debugLineNum = 5046278;BA.debugLine="If ChFotosCamara.Checked And XML_ChFotosCamara_Hi";
 if (mostCurrent._chfotoscamara.getChecked() && (mostCurrent._xml_chfotoscamara_hist).equals("0")) { 
- //BA.debugLineNum = 248;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"1\"";
+RDebugUtils.currentLine=5046279;
+ //BA.debugLineNum = 5046279;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"1\"";
 mostCurrent._datosglobales._xml_primeravez /*String*/  = "1";
  };
- //BA.debugLineNum = 252;BA.debugLine="If ChVideosCamara.Checked And XML_ChVideosCamara_";
+RDebugUtils.currentLine=5046283;
+ //BA.debugLineNum = 5046283;BA.debugLine="If ChVideosCamara.Checked And XML_ChVideosCamara_";
 if (mostCurrent._chvideoscamara.getChecked() && (mostCurrent._xml_chvideoscamara_hist).equals("0")) { 
- //BA.debugLineNum = 253;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"1\"";
+RDebugUtils.currentLine=5046284;
+ //BA.debugLineNum = 5046284;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"1\"";
 mostCurrent._datosglobales._xml_primeravez /*String*/  = "1";
  };
- //BA.debugLineNum = 257;BA.debugLine="If ChImagenesWhapp.Checked And XML_ChImagenesWhat";
+RDebugUtils.currentLine=5046288;
+ //BA.debugLineNum = 5046288;BA.debugLine="If ChImagenesWhapp.Checked And XML_ChImagenesWhat";
 if (mostCurrent._chimageneswhapp.getChecked() && (mostCurrent._xml_chimageneswhatsapp_hist).equals("0")) { 
- //BA.debugLineNum = 258;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"1\"";
+RDebugUtils.currentLine=5046289;
+ //BA.debugLineNum = 5046289;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"1\"";
 mostCurrent._datosglobales._xml_primeravez /*String*/  = "1";
  };
- //BA.debugLineNum = 262;BA.debugLine="If ChVideosWhapp.Checked And XML_ChVideosWhatsApp";
+RDebugUtils.currentLine=5046293;
+ //BA.debugLineNum = 5046293;BA.debugLine="If ChVideosWhapp.Checked And XML_ChVideosWhatsApp";
 if (mostCurrent._chvideoswhapp.getChecked() && (mostCurrent._xml_chvideoswhatsapp_hist).equals("0")) { 
- //BA.debugLineNum = 263;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"1\"";
+RDebugUtils.currentLine=5046294;
+ //BA.debugLineNum = 5046294;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"1\"";
 mostCurrent._datosglobales._xml_primeravez /*String*/  = "1";
  };
- //BA.debugLineNum = 266;BA.debugLine="If (ChFotosCamara.Checked = False) And (ChVideosC";
+RDebugUtils.currentLine=5046297;
+ //BA.debugLineNum = 5046297;BA.debugLine="If (ChFotosCamara.Checked = False) And (ChVideosC";
 if ((mostCurrent._chfotoscamara.getChecked()==anywheresoftware.b4a.keywords.Common.False) && (mostCurrent._chvideoscamara.getChecked()==anywheresoftware.b4a.keywords.Common.False) && (mostCurrent._chimageneswhapp.getChecked()==anywheresoftware.b4a.keywords.Common.False) && (mostCurrent._chvideoswhapp.getChecked()==anywheresoftware.b4a.keywords.Common.False)) { 
- //BA.debugLineNum = 267;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"0\"";
+RDebugUtils.currentLine=5046298;
+ //BA.debugLineNum = 5046298;BA.debugLine="DatosGlobales.XML_PrimeraVez = \"0\"";
 mostCurrent._datosglobales._xml_primeravez /*String*/  = "0";
  };
- //BA.debugLineNum = 274;BA.debugLine="Dim ArchivoXml As String = \"<?xml version=\"\"\"\"1.0";
+RDebugUtils.currentLine=5046305;
+ //BA.debugLineNum = 5046305;BA.debugLine="Dim ArchivoXml As String = \"<?xml version=\"\"\"\"1.0";
 _archivoxml = "<?xml version=\"\"1.0\"\" encoding=\"\"UTF-8\"\"?>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 275;BA.debugLine="ArchivoXml = ArchivoXml & \"<fotos>\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046306;
+ //BA.debugLineNum = 5046306;BA.debugLine="ArchivoXml = ArchivoXml & \"<fotos>\" & CRLF & \"\"";
 _archivoxml = _archivoxml+"<fotos>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 276;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046307;
+ //BA.debugLineNum = 5046307;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
 _archivoxml = _archivoxml+""+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 278;BA.debugLine="ArchivoXml = ArchivoXml & \" <login>\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046309;
+ //BA.debugLineNum = 5046309;BA.debugLine="ArchivoXml = ArchivoXml & \" <login>\" & CRLF & \"\"";
 _archivoxml = _archivoxml+" <login>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 279;BA.debugLine="ArchivoXml = ArchivoXml & \"   <usuario>\" & EtUsua";
+RDebugUtils.currentLine=5046310;
+ //BA.debugLineNum = 5046310;BA.debugLine="ArchivoXml = ArchivoXml & \"   <usuario>\" & EtUsua";
 _archivoxml = _archivoxml+"   <usuario>"+mostCurrent._etusuario.getText()+"</usuario>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 280;BA.debugLine="ArchivoXml = ArchivoXml & \"   <contraseña>\" & EtC";
+RDebugUtils.currentLine=5046311;
+ //BA.debugLineNum = 5046311;BA.debugLine="ArchivoXml = ArchivoXml & \"   <contraseña>\" & EtC";
 _archivoxml = _archivoxml+"   <contraseña>"+mostCurrent._etclave.getText()+"</contraseña>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 281;BA.debugLine="ArchivoXml = ArchivoXml & \"   <recordar>\" & Datos";
+RDebugUtils.currentLine=5046312;
+ //BA.debugLineNum = 5046312;BA.debugLine="ArchivoXml = ArchivoXml & \"   <recordar>\" & Datos";
 _archivoxml = _archivoxml+"   <recordar>"+mostCurrent._datosglobales._xml_recordar /*String*/ +"</recordar>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 282;BA.debugLine="ArchivoXml = ArchivoXml & \" </login>\"  & CRLF & \"";
+RDebugUtils.currentLine=5046313;
+ //BA.debugLineNum = 5046313;BA.debugLine="ArchivoXml = ArchivoXml & \" </login>\"  & CRLF & \"";
 _archivoxml = _archivoxml+" </login>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 284;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046315;
+ //BA.debugLineNum = 5046315;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
 _archivoxml = _archivoxml+""+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 285;BA.debugLine="ArchivoXml = ArchivoXml & \" <ruta_origen>\" & CRLF";
+RDebugUtils.currentLine=5046316;
+ //BA.debugLineNum = 5046316;BA.debugLine="ArchivoXml = ArchivoXml & \" <ruta_origen>\" & CRLF";
 _archivoxml = _archivoxml+" <ruta_origen>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 286;BA.debugLine="ArchivoXml = ArchivoXml & \"   <fotoscamara>\" & Et";
+RDebugUtils.currentLine=5046317;
+ //BA.debugLineNum = 5046317;BA.debugLine="ArchivoXml = ArchivoXml & \"   <fotoscamara>\" & Et";
 _archivoxml = _archivoxml+"   <fotoscamara>"+mostCurrent._etfotoscamara.getText()+"</fotoscamara>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 287;BA.debugLine="ArchivoXml = ArchivoXml & \"   <videoscamara>\" & E";
+RDebugUtils.currentLine=5046318;
+ //BA.debugLineNum = 5046318;BA.debugLine="ArchivoXml = ArchivoXml & \"   <videoscamara>\" & E";
 _archivoxml = _archivoxml+"   <videoscamara>"+mostCurrent._etvideoscamara.getText()+"</videoscamara>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 288;BA.debugLine="ArchivoXml = ArchivoXml & \"   <imageneswhatsapp>\"";
+RDebugUtils.currentLine=5046319;
+ //BA.debugLineNum = 5046319;BA.debugLine="ArchivoXml = ArchivoXml & \"   <imageneswhatsapp>\"";
 _archivoxml = _archivoxml+"   <imageneswhatsapp>"+mostCurrent._etimageneswhapp.getText()+"</imageneswhatsapp>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 289;BA.debugLine="ArchivoXml = ArchivoXml & \"   <videoswhatsapp>\" &";
+RDebugUtils.currentLine=5046320;
+ //BA.debugLineNum = 5046320;BA.debugLine="ArchivoXml = ArchivoXml & \"   <videoswhatsapp>\" &";
 _archivoxml = _archivoxml+"   <videoswhatsapp>"+mostCurrent._etvideoswhapp.getText()+"</videoswhatsapp>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 291;BA.debugLine="ArchivoXml = ArchivoXml & \"   <chfotoscamara>\" &";
+RDebugUtils.currentLine=5046322;
+ //BA.debugLineNum = 5046322;BA.debugLine="ArchivoXml = ArchivoXml & \"   <chfotoscamara>\" &";
 _archivoxml = _archivoxml+"   <chfotoscamara>"+mostCurrent._datosglobales._xml_chfotoscamara /*String*/ +"</chfotoscamara>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 292;BA.debugLine="ArchivoXml = ArchivoXml & \"   <chvideoscamara>\" &";
+RDebugUtils.currentLine=5046323;
+ //BA.debugLineNum = 5046323;BA.debugLine="ArchivoXml = ArchivoXml & \"   <chvideoscamara>\" &";
 _archivoxml = _archivoxml+"   <chvideoscamara>"+mostCurrent._datosglobales._xml_chvideoscamara /*String*/ +"</chvideoscamara>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 293;BA.debugLine="ArchivoXml = ArchivoXml & \"   <chimageneswhatsapp";
+RDebugUtils.currentLine=5046324;
+ //BA.debugLineNum = 5046324;BA.debugLine="ArchivoXml = ArchivoXml & \"   <chimageneswhatsapp";
 _archivoxml = _archivoxml+"   <chimageneswhatsapp>"+mostCurrent._datosglobales._xml_chimageneswhatsapp /*String*/ +"</chimageneswhatsapp>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 294;BA.debugLine="ArchivoXml = ArchivoXml & \"   <chvideoswhatsapp>\"";
+RDebugUtils.currentLine=5046325;
+ //BA.debugLineNum = 5046325;BA.debugLine="ArchivoXml = ArchivoXml & \"   <chvideoswhatsapp>\"";
 _archivoxml = _archivoxml+"   <chvideoswhatsapp>"+mostCurrent._datosglobales._xml_chvideoswhatsapp /*String*/ +"</chvideoswhatsapp>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 295;BA.debugLine="ArchivoXml = ArchivoXml & \"   <primeravez>\" & Dat";
+RDebugUtils.currentLine=5046326;
+ //BA.debugLineNum = 5046326;BA.debugLine="ArchivoXml = ArchivoXml & \"   <primeravez>\" & Dat";
 _archivoxml = _archivoxml+"   <primeravez>"+mostCurrent._datosglobales._xml_primeravez /*String*/ +"</primeravez>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 297;BA.debugLine="ArchivoXml = ArchivoXml & \" </ruta_origen>\" & CRL";
+RDebugUtils.currentLine=5046328;
+ //BA.debugLineNum = 5046328;BA.debugLine="ArchivoXml = ArchivoXml & \" </ruta_origen>\" & CRL";
 _archivoxml = _archivoxml+" </ruta_origen>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 299;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046330;
+ //BA.debugLineNum = 5046330;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
 _archivoxml = _archivoxml+""+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 300;BA.debugLine="ArchivoXml = ArchivoXml & \" <ruta_destino>\" & CRL";
+RDebugUtils.currentLine=5046331;
+ //BA.debugLineNum = 5046331;BA.debugLine="ArchivoXml = ArchivoXml & \" <ruta_destino>\" & CRL";
 _archivoxml = _archivoxml+" <ruta_destino>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 301;BA.debugLine="ArchivoXml = ArchivoXml & \"   <UsuarioRutaFotos>\"";
+RDebugUtils.currentLine=5046332;
+ //BA.debugLineNum = 5046332;BA.debugLine="ArchivoXml = ArchivoXml & \"   <UsuarioRutaFotos>\"";
 _archivoxml = _archivoxml+"   <UsuarioRutaFotos>"+mostCurrent._etcarpetaserverbkp.getText()+"</UsuarioRutaFotos>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 302;BA.debugLine="ArchivoXml = ArchivoXml & \" </ruta_destino>\" & CR";
+RDebugUtils.currentLine=5046333;
+ //BA.debugLineNum = 5046333;BA.debugLine="ArchivoXml = ArchivoXml & \" </ruta_destino>\" & CR";
 _archivoxml = _archivoxml+" </ruta_destino>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 303;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046334;
+ //BA.debugLineNum = 5046334;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
 _archivoxml = _archivoxml+""+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 305;BA.debugLine="ArchivoXml = ArchivoXml & \" <ftp>\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046336;
+ //BA.debugLineNum = 5046336;BA.debugLine="ArchivoXml = ArchivoXml & \" <ftp>\" & CRLF & \"\"";
 _archivoxml = _archivoxml+" <ftp>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 306;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorruta>\" & E";
+RDebugUtils.currentLine=5046337;
+ //BA.debugLineNum = 5046337;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorruta>\" & E";
 _archivoxml = _archivoxml+"   <servidorruta>"+mostCurrent._etservidorruta.getText()+"</servidorruta>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 307;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorip>\" & EtS";
+RDebugUtils.currentLine=5046338;
+ //BA.debugLineNum = 5046338;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorip>\" & EtS";
 _archivoxml = _archivoxml+"   <servidorip>"+mostCurrent._etservidorip.getText()+"</servidorip>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 308;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorpuerto>\" &";
+RDebugUtils.currentLine=5046339;
+ //BA.debugLineNum = 5046339;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorpuerto>\" &";
 _archivoxml = _archivoxml+"   <servidorpuerto>"+mostCurrent._etservidorpuerto.getText()+"</servidorpuerto>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 309;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorusuario>\"";
+RDebugUtils.currentLine=5046340;
+ //BA.debugLineNum = 5046340;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorusuario>\"";
 _archivoxml = _archivoxml+"   <servidorusuario>"+mostCurrent._etservidorusuario.getText()+"</servidorusuario>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 310;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorclave>\" &";
+RDebugUtils.currentLine=5046341;
+ //BA.debugLineNum = 5046341;BA.debugLine="ArchivoXml = ArchivoXml & \"   <servidorclave>\" &";
 _archivoxml = _archivoxml+"   <servidorclave>"+mostCurrent._etservidorclave.getText()+"</servidorclave>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 311;BA.debugLine="ArchivoXml = ArchivoXml & \" </ftp>\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046342;
+ //BA.debugLineNum = 5046342;BA.debugLine="ArchivoXml = ArchivoXml & \" </ftp>\" & CRLF & \"\"";
 _archivoxml = _archivoxml+" </ftp>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 313;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046344;
+ //BA.debugLineNum = 5046344;BA.debugLine="ArchivoXml = ArchivoXml & \"\" & CRLF & \"\"";
 _archivoxml = _archivoxml+""+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 314;BA.debugLine="ArchivoXml = ArchivoXml & \"</fotos>\" & CRLF & \"\"";
+RDebugUtils.currentLine=5046345;
+ //BA.debugLineNum = 5046345;BA.debugLine="ArchivoXml = ArchivoXml & \"</fotos>\" & CRLF & \"\"";
 _archivoxml = _archivoxml+"</fotos>"+anywheresoftware.b4a.keywords.Common.CRLF+"";
- //BA.debugLineNum = 319;BA.debugLine="Return ArchivoXml";
+RDebugUtils.currentLine=5046350;
+ //BA.debugLineNum = 5046350;BA.debugLine="Return ArchivoXml";
 if (true) return _archivoxml;
- //BA.debugLineNum = 323;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5046354;
+ //BA.debugLineNum = 5046354;BA.debugLine="End Sub";
 return "";
 }
 public static String  _cbrecordar_checkedchange(boolean _checked) throws Exception{
- //BA.debugLineNum = 326;BA.debugLine="Private Sub CbRecordar_CheckedChange(Checked As Bo";
- //BA.debugLineNum = 327;BA.debugLine="If CbRecordar.Checked = True Then";
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "cbrecordar_checkedchange", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "cbrecordar_checkedchange", new Object[] {_checked}));}
+RDebugUtils.currentLine=5111808;
+ //BA.debugLineNum = 5111808;BA.debugLine="Private Sub CbRecordar_CheckedChange(Checked As Bo";
+RDebugUtils.currentLine=5111809;
+ //BA.debugLineNum = 5111809;BA.debugLine="If CbRecordar.Checked = True Then";
 if (mostCurrent._cbrecordar.getChecked()==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 328;BA.debugLine="DatosGlobales.XML_Recordar = \"1\"";
+RDebugUtils.currentLine=5111810;
+ //BA.debugLineNum = 5111810;BA.debugLine="DatosGlobales.XML_Recordar = \"1\"";
 mostCurrent._datosglobales._xml_recordar /*String*/  = "1";
  }else {
- //BA.debugLineNum = 330;BA.debugLine="DatosGlobales.XML_Recordar = \"0\"";
+RDebugUtils.currentLine=5111812;
+ //BA.debugLineNum = 5111812;BA.debugLine="DatosGlobales.XML_Recordar = \"0\"";
 mostCurrent._datosglobales._xml_recordar /*String*/  = "0";
  };
- //BA.debugLineNum = 332;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5111814;
+ //BA.debugLineNum = 5111814;BA.debugLine="End Sub";
 return "";
 }
 public static String  _chfotoscamara_checkedchange(boolean _checked) throws Exception{
- //BA.debugLineNum = 335;BA.debugLine="Private Sub ChFotosCamara_CheckedChange(Checked As";
- //BA.debugLineNum = 336;BA.debugLine="If ChFotosCamara.Checked = True Then";
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "chfotoscamara_checkedchange", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "chfotoscamara_checkedchange", new Object[] {_checked}));}
+RDebugUtils.currentLine=5177344;
+ //BA.debugLineNum = 5177344;BA.debugLine="Private Sub ChFotosCamara_CheckedChange(Checked As";
+RDebugUtils.currentLine=5177345;
+ //BA.debugLineNum = 5177345;BA.debugLine="If ChFotosCamara.Checked = True Then";
 if (mostCurrent._chfotoscamara.getChecked()==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 337;BA.debugLine="DatosGlobales.XML_ChFotosCamara = \"1\"";
+RDebugUtils.currentLine=5177346;
+ //BA.debugLineNum = 5177346;BA.debugLine="DatosGlobales.XML_ChFotosCamara = \"1\"";
 mostCurrent._datosglobales._xml_chfotoscamara /*String*/  = "1";
  }else {
- //BA.debugLineNum = 339;BA.debugLine="DatosGlobales.XML_ChFotosCamara = \"0\"";
+RDebugUtils.currentLine=5177348;
+ //BA.debugLineNum = 5177348;BA.debugLine="DatosGlobales.XML_ChFotosCamara = \"0\"";
 mostCurrent._datosglobales._xml_chfotoscamara /*String*/  = "0";
  };
- //BA.debugLineNum = 341;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5177350;
+ //BA.debugLineNum = 5177350;BA.debugLine="End Sub";
 return "";
 }
 public static String  _chimageneswhapp_checkedchange(boolean _checked) throws Exception{
- //BA.debugLineNum = 351;BA.debugLine="Private Sub ChImagenesWhapp_CheckedChange(Checked";
- //BA.debugLineNum = 352;BA.debugLine="If ChImagenesWhapp.Checked = True Then";
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "chimageneswhapp_checkedchange", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "chimageneswhapp_checkedchange", new Object[] {_checked}));}
+RDebugUtils.currentLine=5308416;
+ //BA.debugLineNum = 5308416;BA.debugLine="Private Sub ChImagenesWhapp_CheckedChange(Checked";
+RDebugUtils.currentLine=5308417;
+ //BA.debugLineNum = 5308417;BA.debugLine="If ChImagenesWhapp.Checked = True Then";
 if (mostCurrent._chimageneswhapp.getChecked()==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 353;BA.debugLine="DatosGlobales.XML_ChImagenesWhatsApp = \"1\"";
+RDebugUtils.currentLine=5308418;
+ //BA.debugLineNum = 5308418;BA.debugLine="DatosGlobales.XML_ChImagenesWhatsApp = \"1\"";
 mostCurrent._datosglobales._xml_chimageneswhatsapp /*String*/  = "1";
  }else {
- //BA.debugLineNum = 355;BA.debugLine="DatosGlobales.XML_ChImagenesWhatsApp = \"0\"";
+RDebugUtils.currentLine=5308420;
+ //BA.debugLineNum = 5308420;BA.debugLine="DatosGlobales.XML_ChImagenesWhatsApp = \"0\"";
 mostCurrent._datosglobales._xml_chimageneswhatsapp /*String*/  = "0";
  };
- //BA.debugLineNum = 357;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5308422;
+ //BA.debugLineNum = 5308422;BA.debugLine="End Sub";
 return "";
 }
 public static String  _chvideoscamara_checkedchange(boolean _checked) throws Exception{
- //BA.debugLineNum = 343;BA.debugLine="Private Sub ChVideosCamara_CheckedChange(Checked A";
- //BA.debugLineNum = 344;BA.debugLine="If ChVideosCamara.Checked = True Then";
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "chvideoscamara_checkedchange", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "chvideoscamara_checkedchange", new Object[] {_checked}));}
+RDebugUtils.currentLine=5242880;
+ //BA.debugLineNum = 5242880;BA.debugLine="Private Sub ChVideosCamara_CheckedChange(Checked A";
+RDebugUtils.currentLine=5242881;
+ //BA.debugLineNum = 5242881;BA.debugLine="If ChVideosCamara.Checked = True Then";
 if (mostCurrent._chvideoscamara.getChecked()==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 345;BA.debugLine="DatosGlobales.XML_ChVideosCamara = \"1\"";
+RDebugUtils.currentLine=5242882;
+ //BA.debugLineNum = 5242882;BA.debugLine="DatosGlobales.XML_ChVideosCamara = \"1\"";
 mostCurrent._datosglobales._xml_chvideoscamara /*String*/  = "1";
  }else {
- //BA.debugLineNum = 347;BA.debugLine="DatosGlobales.XML_ChVideosCamara = \"0\"";
+RDebugUtils.currentLine=5242884;
+ //BA.debugLineNum = 5242884;BA.debugLine="DatosGlobales.XML_ChVideosCamara = \"0\"";
 mostCurrent._datosglobales._xml_chvideoscamara /*String*/  = "0";
  };
- //BA.debugLineNum = 349;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5242886;
+ //BA.debugLineNum = 5242886;BA.debugLine="End Sub";
 return "";
 }
 public static String  _chvideoswhapp_checkedchange(boolean _checked) throws Exception{
- //BA.debugLineNum = 359;BA.debugLine="Private Sub ChVideosWhapp_CheckedChange(Checked As";
- //BA.debugLineNum = 360;BA.debugLine="If ChVideosWhapp.Checked = True Then";
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "chvideoswhapp_checkedchange", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "chvideoswhapp_checkedchange", new Object[] {_checked}));}
+RDebugUtils.currentLine=5373952;
+ //BA.debugLineNum = 5373952;BA.debugLine="Private Sub ChVideosWhapp_CheckedChange(Checked As";
+RDebugUtils.currentLine=5373953;
+ //BA.debugLineNum = 5373953;BA.debugLine="If ChVideosWhapp.Checked = True Then";
 if (mostCurrent._chvideoswhapp.getChecked()==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 361;BA.debugLine="DatosGlobales.XML_ChVideosWhatsApp = \"1\"";
+RDebugUtils.currentLine=5373954;
+ //BA.debugLineNum = 5373954;BA.debugLine="DatosGlobales.XML_ChVideosWhatsApp = \"1\"";
 mostCurrent._datosglobales._xml_chvideoswhatsapp /*String*/  = "1";
  }else {
- //BA.debugLineNum = 363;BA.debugLine="DatosGlobales.XML_ChVideosWhatsApp = \"0\"";
+RDebugUtils.currentLine=5373956;
+ //BA.debugLineNum = 5373956;BA.debugLine="DatosGlobales.XML_ChVideosWhatsApp = \"0\"";
 mostCurrent._datosglobales._xml_chvideoswhatsapp /*String*/  = "0";
  };
- //BA.debugLineNum = 365;BA.debugLine="End Sub";
-return "";
-}
-public static String  _globals() throws Exception{
- //BA.debugLineNum = 12;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 16;BA.debugLine="Private EtFotosCamara As EditText";
-mostCurrent._etfotoscamara = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 17;BA.debugLine="Private EtVideosCamara As EditText";
-mostCurrent._etvideoscamara = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 18;BA.debugLine="Private EtImagenesWhapp As EditText";
-mostCurrent._etimageneswhapp = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 19;BA.debugLine="Private EtVideosWhapp As EditText";
-mostCurrent._etvideoswhapp = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 20;BA.debugLine="Private SvConfiguracion As ScrollView";
-mostCurrent._svconfiguracion = new anywheresoftware.b4a.objects.ScrollViewWrapper();
- //BA.debugLineNum = 21;BA.debugLine="Private EtCarpetaServerBkp As EditText";
-mostCurrent._etcarpetaserverbkp = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 22;BA.debugLine="Private EtServidorRuta As EditText";
-mostCurrent._etservidorruta = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 23;BA.debugLine="Private EtServidorIp As EditText";
-mostCurrent._etservidorip = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 24;BA.debugLine="Private EtServidorPuerto As EditText";
-mostCurrent._etservidorpuerto = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 25;BA.debugLine="Private EtServidorUsuario As EditText";
-mostCurrent._etservidorusuario = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 26;BA.debugLine="Private EtServidorClave As EditText";
-mostCurrent._etservidorclave = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 28;BA.debugLine="Private BtnGuardar As Button";
-mostCurrent._btnguardar = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 33;BA.debugLine="Private EtUsuario As EditText";
-mostCurrent._etusuario = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 34;BA.debugLine="Private EtClave As EditText";
-mostCurrent._etclave = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 35;BA.debugLine="Private EtClaveConf As EditText";
-mostCurrent._etclaveconf = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 36;BA.debugLine="Private CbRecordar As CheckBox";
-mostCurrent._cbrecordar = new anywheresoftware.b4a.objects.CompoundButtonWrapper.CheckBoxWrapper();
- //BA.debugLineNum = 38;BA.debugLine="Private ChFotosCamara As CheckBox";
-mostCurrent._chfotoscamara = new anywheresoftware.b4a.objects.CompoundButtonWrapper.CheckBoxWrapper();
- //BA.debugLineNum = 39;BA.debugLine="Private ChVideosCamara As CheckBox";
-mostCurrent._chvideoscamara = new anywheresoftware.b4a.objects.CompoundButtonWrapper.CheckBoxWrapper();
- //BA.debugLineNum = 40;BA.debugLine="Private ChImagenesWhapp As CheckBox";
-mostCurrent._chimageneswhapp = new anywheresoftware.b4a.objects.CompoundButtonWrapper.CheckBoxWrapper();
- //BA.debugLineNum = 41;BA.debugLine="Private ChVideosWhapp As CheckBox";
-mostCurrent._chvideoswhapp = new anywheresoftware.b4a.objects.CompoundButtonWrapper.CheckBoxWrapper();
- //BA.debugLineNum = 43;BA.debugLine="Private XML_ChFotosCamara_Hist As String = DatosG";
-mostCurrent._xml_chfotoscamara_hist = mostCurrent._datosglobales._xml_chfotoscamara /*String*/ ;
- //BA.debugLineNum = 44;BA.debugLine="Private XML_ChVideosCamara_Hist As String = Datos";
-mostCurrent._xml_chvideoscamara_hist = mostCurrent._datosglobales._xml_chvideoscamara /*String*/ ;
- //BA.debugLineNum = 45;BA.debugLine="Private XML_ChImagenesWhatsApp_Hist As String = D";
-mostCurrent._xml_chimageneswhatsapp_hist = mostCurrent._datosglobales._xml_chimageneswhatsapp /*String*/ ;
- //BA.debugLineNum = 46;BA.debugLine="Private XML_ChVideosWhatsApp_Hist As String = Dat";
-mostCurrent._xml_chvideoswhatsapp_hist = mostCurrent._datosglobales._xml_chvideoswhatsapp /*String*/ ;
- //BA.debugLineNum = 49;BA.debugLine="End Sub";
-return "";
-}
-public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 10;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5373958;
+ //BA.debugLineNum = 5373958;BA.debugLine="End Sub";
 return "";
 }
 public static boolean  _validardatos() throws Exception{
+RDebugUtils.currentModule="configuracion";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "validardatos", false))
+	 {return ((Boolean) Debug.delegate(mostCurrent.activityBA, "validardatos", null));}
 boolean _resultado = false;
- //BA.debugLineNum = 180;BA.debugLine="Private Sub ValidarDatos() As Boolean";
- //BA.debugLineNum = 181;BA.debugLine="Dim Resultado As Boolean = True";
+RDebugUtils.currentLine=4980736;
+ //BA.debugLineNum = 4980736;BA.debugLine="Private Sub ValidarDatos() As Boolean";
+RDebugUtils.currentLine=4980737;
+ //BA.debugLineNum = 4980737;BA.debugLine="Dim Resultado As Boolean = True";
 _resultado = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 184;BA.debugLine="If EtUsuario.Text = \"\" Then";
+RDebugUtils.currentLine=4980740;
+ //BA.debugLineNum = 4980740;BA.debugLine="If EtUsuario.Text = \"\" Then";
 if ((mostCurrent._etusuario.getText()).equals("")) { 
- //BA.debugLineNum = 185;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980741;
+ //BA.debugLineNum = 4980741;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 188;BA.debugLine="If EtClave.Text = \"\" Then";
+RDebugUtils.currentLine=4980744;
+ //BA.debugLineNum = 4980744;BA.debugLine="If EtClave.Text = \"\" Then";
 if ((mostCurrent._etclave.getText()).equals("")) { 
- //BA.debugLineNum = 189;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980745;
+ //BA.debugLineNum = 4980745;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 192;BA.debugLine="If EtClaveConf.Text = \"\" Then";
+RDebugUtils.currentLine=4980748;
+ //BA.debugLineNum = 4980748;BA.debugLine="If EtClaveConf.Text = \"\" Then";
 if ((mostCurrent._etclaveconf.getText()).equals("")) { 
- //BA.debugLineNum = 193;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980749;
+ //BA.debugLineNum = 4980749;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 196;BA.debugLine="If EtFotosCamara.Text = \"\" Then";
+RDebugUtils.currentLine=4980752;
+ //BA.debugLineNum = 4980752;BA.debugLine="If EtFotosCamara.Text = \"\" Then";
 if ((mostCurrent._etfotoscamara.getText()).equals("")) { 
- //BA.debugLineNum = 197;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980753;
+ //BA.debugLineNum = 4980753;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 200;BA.debugLine="If EtVideosCamara.Text = \"\" Then";
+RDebugUtils.currentLine=4980756;
+ //BA.debugLineNum = 4980756;BA.debugLine="If EtVideosCamara.Text = \"\" Then";
 if ((mostCurrent._etvideoscamara.getText()).equals("")) { 
- //BA.debugLineNum = 201;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980757;
+ //BA.debugLineNum = 4980757;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 204;BA.debugLine="If EtImagenesWhapp.Text = \"\" Then";
+RDebugUtils.currentLine=4980760;
+ //BA.debugLineNum = 4980760;BA.debugLine="If EtImagenesWhapp.Text = \"\" Then";
 if ((mostCurrent._etimageneswhapp.getText()).equals("")) { 
- //BA.debugLineNum = 205;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980761;
+ //BA.debugLineNum = 4980761;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 208;BA.debugLine="If EtVideosWhapp.Text = \"\" Then";
+RDebugUtils.currentLine=4980764;
+ //BA.debugLineNum = 4980764;BA.debugLine="If EtVideosWhapp.Text = \"\" Then";
 if ((mostCurrent._etvideoswhapp.getText()).equals("")) { 
- //BA.debugLineNum = 209;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980765;
+ //BA.debugLineNum = 4980765;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 212;BA.debugLine="If EtCarpetaServerBkp.Text = \"\" Then";
+RDebugUtils.currentLine=4980768;
+ //BA.debugLineNum = 4980768;BA.debugLine="If EtCarpetaServerBkp.Text = \"\" Then";
 if ((mostCurrent._etcarpetaserverbkp.getText()).equals("")) { 
- //BA.debugLineNum = 213;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980769;
+ //BA.debugLineNum = 4980769;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 216;BA.debugLine="If EtServidorRuta.Text = \"\" Then";
+RDebugUtils.currentLine=4980772;
+ //BA.debugLineNum = 4980772;BA.debugLine="If EtServidorRuta.Text = \"\" Then";
 if ((mostCurrent._etservidorruta.getText()).equals("")) { 
- //BA.debugLineNum = 217;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980773;
+ //BA.debugLineNum = 4980773;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 220;BA.debugLine="If EtServidorIp.Text = \"\" Then";
+RDebugUtils.currentLine=4980776;
+ //BA.debugLineNum = 4980776;BA.debugLine="If EtServidorIp.Text = \"\" Then";
 if ((mostCurrent._etservidorip.getText()).equals("")) { 
- //BA.debugLineNum = 221;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980777;
+ //BA.debugLineNum = 4980777;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 224;BA.debugLine="If EtServidorPuerto.Text = \"\" Then";
+RDebugUtils.currentLine=4980780;
+ //BA.debugLineNum = 4980780;BA.debugLine="If EtServidorPuerto.Text = \"\" Then";
 if ((mostCurrent._etservidorpuerto.getText()).equals("")) { 
- //BA.debugLineNum = 225;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980781;
+ //BA.debugLineNum = 4980781;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 228;BA.debugLine="If EtServidorUsuario.Text = \"\" Then";
+RDebugUtils.currentLine=4980784;
+ //BA.debugLineNum = 4980784;BA.debugLine="If EtServidorUsuario.Text = \"\" Then";
 if ((mostCurrent._etservidorusuario.getText()).equals("")) { 
- //BA.debugLineNum = 229;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980785;
+ //BA.debugLineNum = 4980785;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 232;BA.debugLine="If EtServidorClave.Text = \"\" Then";
+RDebugUtils.currentLine=4980788;
+ //BA.debugLineNum = 4980788;BA.debugLine="If EtServidorClave.Text = \"\" Then";
 if ((mostCurrent._etservidorclave.getText()).equals("")) { 
- //BA.debugLineNum = 233;BA.debugLine="Resultado = False";
+RDebugUtils.currentLine=4980789;
+ //BA.debugLineNum = 4980789;BA.debugLine="Resultado = False";
 _resultado = anywheresoftware.b4a.keywords.Common.False;
  };
- //BA.debugLineNum = 236;BA.debugLine="Return Resultado";
+RDebugUtils.currentLine=4980792;
+ //BA.debugLineNum = 4980792;BA.debugLine="Return Resultado";
 if (true) return _resultado;
- //BA.debugLineNum = 237;BA.debugLine="End Sub";
+RDebugUtils.currentLine=4980793;
+ //BA.debugLineNum = 4980793;BA.debugLine="End Sub";
 return false;
 }
 }

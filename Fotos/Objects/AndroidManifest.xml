@@ -16,6 +16,7 @@
 	<uses-permission android:name="android.permission.VIBRATE"/>
 	<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -77,6 +78,28 @@
 			android:screenOrientation="portrait"
 			android:exported="true">
 		</activity>
+		<service
+			android:name=".servbackup3"
+			android:exported="true">
+		</service>
+		<receiver
+			android:name=".servbackup3$servbackup3_BR"
+			android:exported="true">
+			<intent-filter>
+			<action android:name="android.intent.action.BOOT_COMPLETED"/>
+			</intent-filter>
+		</receiver>
+		<service
+			android:name=".servbackup2"
+			android:exported="true">
+		</service>
+		<receiver
+			android:name=".servbackup2$servbackup2_BR"
+			android:exported="true">
+			<intent-filter>
+			<action android:name="android.intent.action.BOOT_COMPLETED"/>
+			</intent-filter>
+		</receiver>
 		<activity
 			android:windowSoftInputMode="stateHidden"
 			android:launchMode="singleTop"
@@ -98,33 +121,15 @@
 			</intent-filter>
 		</receiver>
 		<service
-			android:name=".servbackup2"
-			android:exported="true">
-		</service>
-		<receiver
-			android:name=".servbackup2$servbackup2_BR"
-			android:exported="true">
-			<intent-filter>
-			<action android:name="android.intent.action.BOOT_COMPLETED"/>
-			</intent-filter>
-		</receiver>
-		<service
-			android:name=".servbackup3"
-			android:exported="true">
-		</service>
-		<receiver
-			android:name=".servbackup3$servbackup3_BR"
-			android:exported="true">
-			<intent-filter>
-			<action android:name="android.intent.action.BOOT_COMPLETED"/>
-			</intent-filter>
-		</receiver>
-		<service
 			android:name=".starter"
 			android:exported="true">
 		</service>
 		<receiver
 			android:name=".starter$starter_BR"
+			android:exported="true">
+		</receiver>
+		<receiver
+			android:name=".httputils2service"
 			android:exported="true">
 		</receiver>
 	</application>
